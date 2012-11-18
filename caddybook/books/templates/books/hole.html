@@ -1,0 +1,66 @@
+{% extends "books/base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<style>
+.image-container {
+    border: 1px solid black;
+    height: 400px;
+    width: 350px;
+}
+</style>
+
+<ul class="pager span10">
+    <li class="previous">
+        {% if hole.has_previous %}
+            <a href="{% url "books-hole" hole.course.slug hole.previous_hole_position %}">&larr; {% trans "Previous hole" %}</a>
+        {% else %}
+            <a class="muted">&larr; {% trans "Previous hole" %}</a>
+        {% endif %}
+    </li>
+    <li>
+        Hole {{ hole.position }} of {{ hole.course.hole_set.count }}
+    </li>
+    <li class="next">
+        {% if hole.has_next %}
+            <a href="{% url "books-hole" hole.course.slug hole.next_hole_position %}">{% trans "Next hole" %} &rarr;</a>
+        {% else %}
+            <a class="muted">{% trans "Next hole" %} &rarr;</a>
+        {% endif %}
+    </li>
+</ul>
+
+<div class="row">
+    <div class="span4">
+        <div class="image-container">
+        </div>
+    </div>
+    <div class="span6">
+        <h1>{{ hole }}</h1>
+
+        <dl>
+            <dt>{% trans "Course" %}</dt>
+            <dd><a href="{% url "books-course" hole.course.slug %}">{{ hole.course.name }}</a></dd>
+
+            <dt>{% trans "Length" %}</dt>
+            <dd>
+                {% if hole.length %}
+                    {{ hole.length }}
+                {% else %}
+                    <span class="muted">{% trans "N/A" %}</span>
+                {% endif %}
+            </dd>
+            <dt>{% trans "Par" %}</dt>
+            <dd>
+                {% if hole.par %}
+                    {{ hole.par }}
+                {% else %}
+                    <span class="muted">{% trans "N/A" %}</span>
+                {% endif %}
+            </dd>
+        </dl>
+    </div>
+</div>
+
+{% endblock %}
