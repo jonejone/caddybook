@@ -1,0 +1,21 @@
+{% load i18n %}
+<ul class="pager span10">
+    <li class="previous">
+        {% if hole.has_previous %}
+            <a href="{% url "books-hole" hole.course.slug hole.previous_hole_position %}">&larr; {% trans "Previous hole" %}</a>
+        {% else %}
+            <a class="muted">&larr; {% trans "Previous hole" %}</a>
+        {% endif %}
+    </li>
+    <li>
+        Hole {{ hole.position }} of {{ hole.course.hole_set.count }}
+    </li>
+    <li class="next">
+        {% if hole.has_next %}
+            <a href="{% url "books-hole" hole.course.slug hole.next_hole_position %}">{% trans "Next hole" %} &rarr;</a>
+        {% else %}
+            <a class="muted">{% trans "Next hole" %} &rarr;</a>
+        {% endif %}
+    </li>
+</ul>
+

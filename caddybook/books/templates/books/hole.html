@@ -1,39 +1,86 @@
 {% extends "books/base.html" %}
 {% load i18n %}
+{% load thumbnail %}
+
+
+{% block endbody %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMuBRUiUbR9bhWqHAU_PvJWDdoeAs0xHg&sensor=false"></script>
+<script src="/static/caddybook/js/hole-map.js"></script>
+
+<script src="/static/colorbox/jquery.colorbox.js"></script>
+
+<script>
+$(function() {
+    $('.gallery').colorbox({rel: 'hole-gallery',
+        maxWidth: "95%", maxHeight: "95%"});
+});
+</script>
+{% endblock %}
+
+{% block endhead %}
+<link href="/static/colorbox/colorbox.css" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
-<style>
-.image-container {
-    border: 1px solid black;
-    height: 400px;
-    width: 350px;
-}
-</style>
-
-<ul class="pager span10">
-    <li class="previous">
-        {% if hole.has_previous %}
-            <a href="{% url "books-hole" hole.course.slug hole.previous_hole_position %}">&larr; {% trans "Previous hole" %}</a>
-        {% else %}
-            <a class="muted">&larr; {% trans "Previous hole" %}</a>
-        {% endif %}
-    </li>
-    <li>
-        Hole {{ hole.position }} of {{ hole.course.hole_set.count }}
-    </li>
-    <li class="next">
-        {% if hole.has_next %}
-            <a href="{% url "books-hole" hole.course.slug hole.next_hole_position %}">{% trans "Next hole" %} &rarr;</a>
-        {% else %}
-            <a class="muted">{% trans "Next hole" %} &rarr;</a>
-        {% endif %}
-    </li>
-</ul>
+{% include "books/hole/pager.html" %}
 
 <div class="row">
     <div class="span4">
-        <div class="image-container">
+
+        <ul class="nav nav-tabs" id="hole-tabs">
+            <li class="active"><a href="#images" data-toggle="tab">{% trans "Images" %}</a></li>
+            <li><a href="#map" data-toggle="tab">{% trans "Map" %}</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="images">
+                {% if hole.image %}
+                    {% thumbnail hole.image "x900" crop="center" as img %}
+                    <a class="gallery" href="{{ img.url }}">
+                    {% endthumbnail %}
+
+                    {% thumbnail hole.image "350x400" crop="center" as img %}
+                        <img src="{{ img.url }}" alt="{{ hole }}" class="img-polaroid hole-main-image">
+                    {% endthumbnail %}
+                    </a>
+                {% endif %}
+
+                <ul class="thumbnails">
+                    {% for image in hole.holegalleryimage_set.all %}
+                    <li class="span1">
+                        {% thumbnail image.image "x900" as img %}
+                        <a href="{{ img.url }}" class="thumbnail gallery" title="{{ image.description }}">
+                        {% endthumbnail %}
+
+                        {% thumbnail image.image "100x100" crop="center" as img %}
+                        <img src="{{ img.url }}" alt="">
+                        {% endthumbnail %}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+
+            </div>
+
+            <div class="tab-pane" id="map">
+
+                <script>
+                $(function() {
+                    var HoleMapManager = CADDYBOOK.module('hole_map').HoleMapManager;
+                    var container = $('#hole-map-container').get(0);
+                    var map = new HoleMapManager(container,
+                        {{ hole.tee_pos.latitude }},
+                        {{ hole.tee_pos.longitude }},
+                        {{ hole.basket_pos.latitude }},
+                        {{ hole.basket_pos.longitude }});
+
+                    window.map = map;
+                });
+                </script>
+               <div class="hole-map-wrapper"><div id="hole-map-container"></div></div>
+            </div>
         </div>
     </div>
     <div class="span6">
@@ -47,6 +94,15 @@
             <dd>
                 {% if hole.length %}
                     {{ hole.length }}
+                {% else %}
+                    <span class="muted">{% trans "N/A" %}</span>
+                {% endif %}
+            </dd>
+
+            <dt>{% trans "GPS Distance" %}</dt>
+            <dd>
+                {% if hole.gps_distance %}
+                    {{ hole.gps_distance }}
                 {% else %}
                     <span class="muted">{% trans "N/A" %}</span>
                 {% endif %}
