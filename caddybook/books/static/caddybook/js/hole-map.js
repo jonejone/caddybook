@@ -10,7 +10,7 @@
             basket_lon);
 
         this.map_options = {
-            center: this.tee_pos, // TODO: Should be in center of tee/basket
+            center: this.tee_pos,
             zoom: 18, // # TODO: Should be calculated, not static
             mapTypeId: google.maps.MapTypeId.ROADMAP,
         };
@@ -33,7 +33,21 @@
             bounds.extend(this.tee_pos);
             bounds.extend(this.basket_pos);
 
+            /* This will auto-zoom based on bounds */
+            this.map.fitBounds(bounds);
+
+            /* Set the map position  based on boudns */
             this.map.setCenter(bounds.getCenter());
+        },
+
+        rebuildMarkers: function() {
+
+            this.tee_basket_line.setMap(null);
+            this.tee_marker.setMap(null);
+            this.basket_marker.setMap(null);
+            this.buildMarkers();
+            this.setCenter();
+
         },
         
         buildMarkers: function() {
