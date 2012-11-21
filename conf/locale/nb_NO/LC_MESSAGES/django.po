@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 19:15-0600\n"
+"POT-Creation-Date: 2012-11-20 19:28-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,82 +17,111 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: caddybook/books/models.py:9 caddybook/books/models.py:22
+#: caddybook/books/templates/books/course.html:11
+msgid "Name"
+msgstr "Navn"
+
+#: caddybook/books/models.py:11
+msgid "URL"
+msgstr ""
+
+#: caddybook/books/models.py:12
+msgid "Active"
+msgstr "Aktiv"
+
+#: caddybook/books/models.py:20
+#, fuzzy
+msgid "Position"
+msgstr "Posisjon"
+
 #: caddybook/books/models.py:26
 msgid "Tee position"
-msgstr ""
+msgstr "Utkastposisjon"
 
 #: caddybook/books/models.py:27
 msgid "Basket position"
-msgstr ""
+msgstr "Kurvposisjon"
 
-#: caddybook/books/models.py:45
-msgid "Unnamed"
-msgstr ""
+#: caddybook/books/models.py:31 caddybook/books/templates/books/course.html:13
+#: caddybook/books/templates/books/hole.html:120
+msgid "Distance"
+msgstr "Distanse"
 
-#: caddybook/books/templates/books/base.html:6
-#: caddybook/books/templates/books/base.html:30
-msgid "Caddybook"
-msgstr ""
+#: caddybook/books/models.py:32
+#, fuzzy
+msgid "Distance to basket in meters"
+msgstr "Distanse til kurven i meter"
 
-#: caddybook/books/templates/books/base.html:33
-msgid "Courses"
-msgstr ""
-
-#: caddybook/books/templates/books/base_course.html:18
-msgid "Overview"
-msgstr ""
-
-#: caddybook/books/templates/books/base_course.html:21
-msgid "Jump to hole"
-msgstr ""
-
-#: caddybook/books/templates/books/base_hole.html:8
-msgid "Hole admin"
-msgstr ""
-
-#: caddybook/books/templates/books/base_hole.html:15
-msgid "Edit this hole"
-msgstr ""
-
-#: caddybook/books/templates/books/base_hole.html:20
-#: caddybook/books/templates/books/hole/edit_gallery.html:21
-msgid "Edit hole gallery"
-msgstr ""
-
-#: caddybook/books/templates/books/base_hole.html:25
-#: caddybook/books/templates/books/hole/edit_position.html:42
-msgid "Edit hole position"
-msgstr ""
-
-#: caddybook/books/templates/books/base_hole.html:30
-msgid "Set basket to my current position"
-msgstr ""
-
-#: caddybook/books/templates/books/base_hole.html:33
-msgid "Set teebox to my current position"
-msgstr ""
-
-#: caddybook/books/templates/books/bootstrap_form.html:26
-#: caddybook/books/templates/books/hole/edit_position.html:116
-msgid "Submit"
-msgstr ""
-
-#: caddybook/books/templates/books/course.html:10
-msgid "#"
-msgstr ""
-
-#: caddybook/books/templates/books/course.html:11
-msgid "Name"
-msgstr ""
-
-#: caddybook/books/templates/books/course.html:12
+#: caddybook/books/models.py:35 caddybook/books/templates/books/course.html:12
 #: caddybook/books/templates/books/hole.html:137
 msgid "Par"
 msgstr ""
 
-#: caddybook/books/templates/books/course.html:13
-#: caddybook/books/templates/books/hole.html:120
-msgid "Distance"
+#: caddybook/books/models.py:38 caddybook/books/models.py:82
+#, fuzzy
+msgid "Image"
+msgstr "Bilder"
+
+#: caddybook/books/models.py:41 caddybook/books/models.py:83
+#, fuzzy
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: caddybook/books/models.py:47
+msgid "Unnamed"
+msgstr "Uten navn"
+
+#: caddybook/books/templates/books/base.html:6
+#: caddybook/books/templates/books/base.html:30
+msgid "Caddybook"
+msgstr "Caddybok"
+
+#: caddybook/books/templates/books/base.html:33
+msgid "Courses"
+msgstr "Baner"
+
+#: caddybook/books/templates/books/base_course.html:18
+msgid "Overview"
+msgstr "Oversikt"
+
+#: caddybook/books/templates/books/base_course.html:21
+msgid "Jump to hole"
+msgstr "Hopp til hull"
+
+#: caddybook/books/templates/books/base_hole.html:8
+msgid "Hole admin"
+msgstr "Hull admin"
+
+#: caddybook/books/templates/books/base_hole.html:15
+msgid "Edit this hole"
+msgstr "Rediger hull"
+
+#: caddybook/books/templates/books/base_hole.html:20
+#: caddybook/books/templates/books/hole/edit_gallery.html:21
+msgid "Edit hole gallery"
+msgstr "Rediger bildegalleri"
+
+#: caddybook/books/templates/books/base_hole.html:25
+#: caddybook/books/templates/books/hole/edit_position.html:42
+msgid "Edit hole position"
+msgstr "Rediger hullposisjon"
+
+#: caddybook/books/templates/books/base_hole.html:30
+msgid "Set basket to my current position"
+msgstr "Sett kurvplassering til min posisjon"
+
+#: caddybook/books/templates/books/base_hole.html:33
+msgid "Set teebox to my current position"
+msgstr "Sett utkastplassering til min posisjon"
+
+#: caddybook/books/templates/books/bootstrap_form.html:26
+#: caddybook/books/templates/books/hole/edit_position.html:116
+msgid "Submit"
+msgstr "Send"
+
+#: caddybook/books/templates/books/course.html:10
+msgid "#"
 msgstr ""
 
 #: caddybook/books/templates/books/course.html:27
@@ -108,7 +137,7 @@ msgstr ""
 #: caddybook/books/templates/books/hole.html:132
 #, python-format
 msgid "%(distance)s meters"
-msgstr ""
+msgstr "%(distance)s meter"
 
 #: caddybook/books/templates/books/hole.html:23
 msgid "Waiting for geolocation..."
@@ -120,56 +149,56 @@ msgstr ""
 
 #: caddybook/books/templates/books/hole.html:61
 msgid "Images"
-msgstr ""
+msgstr "Bilder"
 
 #: caddybook/books/templates/books/hole.html:62
 msgid "Map"
-msgstr ""
+msgstr "Kart"
 
 #: caddybook/books/templates/books/hole.html:117
 msgid "Course"
-msgstr ""
+msgstr "Bane"
 
 #: caddybook/books/templates/books/hole.html:129
 msgid "GPS Distance"
-msgstr ""
+msgstr "GPS Distanse"
 
 #: caddybook/books/templates/books/hole/edit.html:7
 msgid "Edit hole"
-msgstr ""
+msgstr "Rediger hull"
 
 #: caddybook/books/templates/books/hole/edit.html:9
 #: caddybook/books/templates/books/hole/edit_gallery.html:23
 #: caddybook/books/templates/books/hole/edit_position.html:44
 msgid "Back to hole"
-msgstr ""
+msgstr "Tilbake til hull"
 
 #: caddybook/books/templates/books/hole/edit_gallery.html:34
 msgid "Delete image"
-msgstr ""
+msgstr "Slett bilde"
 
 #: caddybook/books/templates/books/hole/edit_gallery.html:39
 msgid "Upload new image"
-msgstr ""
+msgstr "Last opp nytt bilde"
 
 #: caddybook/books/templates/books/hole/edit_position.html:55
 #: caddybook/books/templates/books/hole/edit_position.html:70
 #: caddybook/books/templates/books/hole/edit_position.html:88
 #: caddybook/books/templates/books/hole/edit_position.html:103
 msgid "Set to my location"
-msgstr ""
+msgstr "Sett til min posisjon"
 
 #: caddybook/books/templates/books/hole/pager.html:5
 #: caddybook/books/templates/books/hole/pager.html:7
 msgid "Previous hole"
-msgstr ""
+msgstr "Forrige hull"
 
 #: caddybook/books/templates/books/hole/pager.html:11
 #, python-format
 msgid "%(position)s of %(count)s"
-msgstr ""
+msgstr "%(position)s av %(count)s"
 
 #: caddybook/books/templates/books/hole/pager.html:15
 #: caddybook/books/templates/books/hole/pager.html:17
 msgid "Next hole"
-msgstr ""
+msgstr "Neste hull"
