@@ -6,10 +6,10 @@ from geopy import distance, Point
 
 
 class Course(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(_('Name'), max_length=100)
     slug = models.SlugField()
-    url = models.URLField(blank=True, null=True)
-    active = models.BooleanField()
+    url = models.URLField(_('URL'), blank=True, null=True)
+    active = models.BooleanField(_('Active'))
 
     def __unicode__(self):
         return self.name
@@ -17,9 +17,9 @@ class Course(models.Model):
 
 class Hole(models.Model):
     course = models.ForeignKey(Course)
-    position = models.PositiveSmallIntegerField()
+    position = models.PositiveSmallIntegerField(_('Position'))
 
-    name = models.CharField(max_length=100,
+    name = models.CharField(_('Name'), max_length=100,
         blank=True, null=True)
 
     # Coordinates fields for Tee and Basket
@@ -27,13 +27,30 @@ class Hole(models.Model):
     basket_pos = GeopositionField(_('Basket position'))
 
     # Misc
-    length = models.PositiveSmallIntegerField(
-        blank=True, null=True)
+    distance = models.PositiveSmallIntegerField(
+        _('Distance'), blank=True, null=True,
+        help_text=_('Distance to basket in meters'))
 
     par = models.PositiveSmallIntegerField(
-        blank=True, null=True)
+        _('Par'), blank=True, null=True)
 
-    image = ImageField(upload_to='upload/hole-mainimages/')
+    image = ImageField(upload_to='upload/hole-mainimages/',
+        verbose_name=_('Image'), blank=True, null=True)
+
+    description = models.TextField(
+        _('Description'), blank=True, null=True)
+
+    def get_tee_lat(self):
+        return '%s' % self.tee_pos.latitude
+
+    def get_tee_lon(self):
+        return '%s' % self.tee_pos.longitude
+
+    def get_basket_lat(self):
+        return '%s' % self.basket_pos.latitude
+
+    def get_basket_lon(self):
+        return '%s' % self.basket_pos.longitude
 
     def __unicode__(self):
         if self.name:
@@ -68,12 +85,12 @@ class Hole(models.Model):
         p2 = Point(self.basket_pos.latitude, self.basket_pos.longitude)
         d = distance.distance(p1, p2)
 
-        return _('%i meters' % d.meters)
-
+        return '%i' % d.meters
 
 
 class HoleGalleryImage(models.Model):
     hole = models.ForeignKey(Hole)
-    image = ImageField(upload_to='upload/hole-gallery/')
-    description = models.CharField(max_length=255,
-        blank=True, null=True)
+    image = ImageField(upload_to='upload/hole-gallery/',
+        verbose_name=_('Image'))
+    description = models.CharField(_('Description'),
+        max_length=255, blank=True, null=True)
