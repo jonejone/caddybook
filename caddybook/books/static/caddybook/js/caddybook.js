@@ -40,6 +40,13 @@
             this.container.delay(3000).fadeOut();
         },
 
+        setError: function(message) {
+            this.setType('important');
+            this.setMessage(message);
+            this.show();
+            this.container.delay(3000).fadeOut();
+        },
+
         setWarning: function(message) {
             this.setType('warning');
             this.setMessage(message);
