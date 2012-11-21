@@ -1,5 +1,5 @@
 {% load i18n %}
-<ul class="pager span12">
+<ul class="pager span8">
     <li class="previous">
         {% if hole.has_previous %}
             <a href="{% url "books-hole" hole.course.slug hole.previous_hole_position %}">&larr; {% trans "Previous hole" %}</a>
@@ -7,8 +7,8 @@
             <a class="muted">&larr; {% trans "Previous hole" %}</a>
         {% endif %}
     </li>
-    <li>
-        Hole {{ hole.position }} of {{ hole.course.hole_set.count }}
+    <li class="hidden-phone">
+        {% blocktrans with position=hole.position count=hole.course.hole_set.count %}{{ position }} of {{ count }}{% endblocktrans %}
     </li>
     <li class="next">
         {% if hole.has_next %}
@@ -18,4 +18,3 @@
         {% endif %}
     </li>
 </ul>
-
