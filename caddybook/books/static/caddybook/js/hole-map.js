@@ -66,39 +66,4 @@
     hole_map.HoleMapManager = HoleMapManager;
 
 
-}(CADDYBOOK.module('hole_map')))
-
-
-$(function() {
-
-        
-    /*
-
-    var container = $('#hole-map-container').get(0);
-    
-    var tee_lat = {{ hole.tee_pos.latitude }};
-    var tee_lon = {{ hole.tee_pos.longitude }};
-    var basket_lat = {{ hole.basket_pos.latitude }};
-    var basket_lon = {{ hole.basket_pos.longitude }};
-
-    var tee_position = new google.maps.LatLng(
-        tee_lat, tee_lon);
-
-    var basket_position = new google.maps.LatLng(
-        basket_lat, basket_lon);
-
-    
-    var options = {
-        center: tee_position,
-        zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    
-    var map = new google.maps.Map(container, options);
-
-
-     $('#hole-tabs a:last').tab('show'); 
-
-     */
-});
-
+}(CADDYBOOK.module('hole_map')));
