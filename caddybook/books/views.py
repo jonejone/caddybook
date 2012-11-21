@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.core.context_processors import csrf
+
 from caddybook.books.models import Course, Hole
 from caddybook.books.forms import HoleForm, HoleGalleryImageForm, HolePositionForm
 
@@ -27,7 +30,9 @@ def hole(request, slug, position):
         position=position)
 
     return render(request, 'books/hole.html', {
-        'hole': hole, 'course': course })
+        'hole': hole, 'course': course,
+        'MAPS_API_KEY': settings.MAPS_API_KEY,
+        'CSRF': csrf(request)})
 
 
 def hole_edit(request, slug, position):

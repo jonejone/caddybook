@@ -4,6 +4,7 @@
 
 {% block endbody %}
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ MAPS_API_KEY }}&sensor=false"></script>
+<script src="/static/caddybook/js/hole.js"></script>
 <script src="/static/caddybook/js/hole-map.js"></script>
 <script src="/static/colorbox/jquery.colorbox.js"></script>
 <script>
@@ -13,34 +14,14 @@ $(function() {
     $('.gallery').colorbox({rel: 'hole-gallery',
         maxWidth: "95%", maxHeight: "95%"});
 
-    /* Get instance of ajax_status_bar from CADDYBOOK */
-    var status_bar = CADDYBOOK.module('caddybook').ajax_status_bar;
-
     /* Deal with buttons for saving position */
-    $('#set-basket-position, #set-tee-position').click(function(e) {
-        if(navigator.geolocation) {
-
-            status_bar.setWarning('{% trans "Waiting for geolocation..." %}');
-
-            navigator.geolocation.getCurrentPosition(function(position) {
-
-                var lat = position.coords.latitude;
-                var lon = position.coords.longitude;
-
-                /* Find which button was clicked */
-                var id = e.target.id.split('-')[1];
-
-                status_bar.setWarning('{% trans "Saving coordinates on server..." %}');
-
-                setTimeout(function() {
-                    status_bar.setSuccess('Done!');
-                }, 1000);
-
-            }, function() {
-                console.log('Error!');
-            });
-        }
-
+    $('.set-hole-position').click(function(e) {
+        var HoleSetGeoPosition = CADDYBOOK.module('hole').HoleSetGeoPosition;
+        var hole_geo = new HoleSetGeoPosition({
+            'field': $(this).data('fieldId'),
+            'url': '{% url "books-ajax-set-hole-geoposition" hole.course.slug hole.position %}',
+            'csrf_token': '{{ CSRF.csrf_token }}',
+        })
     });
 });
 </script>
@@ -98,10 +79,10 @@ $(function() {
                     var HoleMapManager = CADDYBOOK.module('hole_map').HoleMapManager;
                     var container = $('#hole-map-container').get(0);
                     var map = new HoleMapManager(container,
-                        {{ hole.tee_pos.latitude }},
-                        {{ hole.tee_pos.longitude }},
-                        {{ hole.basket_pos.latitude }},
-                        {{ hole.basket_pos.longitude }});
+                        {{ hole.get_tee_lat }},
+                        {{ hole.get_tee_lon }},
+                        {{ hole.get_basket_lat }},
+                        {{ hole.get_basket_lon }});
 
                     window.map = map;
                 });
@@ -138,6 +119,14 @@ $(function() {
             <dd>
                 {% if hole.par %}
                     {{ hole.par }}
+                {% else %}
+                    <span class="muted">{% trans "N/A" %}</span>
+                {% endif %}
+            </dd>
+            <dt>{% trans "Description" %}</dt>
+            <dd>
+                {% if hole.description %}
+                    {{ hole.description }}
                 {% else %}
                     <span class="muted">{% trans "N/A" %}</span>
                 {% endif %}

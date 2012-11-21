@@ -14,7 +14,16 @@ urlpatterns = patterns('caddybook.books.views',
         'hole_edit_position', name='books-hole-edit-position'),
     url(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/gallery/$',
         'hole_edit_gallery', name='books-hole-edit-gallery'),
+
+
+    # Enable admin site
     url(r'^admin/', include(admin.site.urls)),
+)
+
+urlpatterns += patterns('caddybook.books.ajaxviews',
+    # AJAX views
+    url(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/ajax/set-hole-geoposition/$',
+        'set_hole_geoposition', name='books-ajax-set-hole-geoposition'),
 )
 
 if settings.DEBUG:
