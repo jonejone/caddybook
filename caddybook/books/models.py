@@ -60,7 +60,8 @@ class Hole(models.Model):
         return self.position - 1
 
     def gps_distance(self):
-        if not self.tee_pos and self.basket_pos:
+
+        if self.tee_pos.latitude is 0 or self.basket_pos.latitude == 0:
             return False
 
         p1 = Point(self.tee_pos.latitude, self.tee_pos.longitude)
