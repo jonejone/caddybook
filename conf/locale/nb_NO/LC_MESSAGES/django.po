@@ -1,0 +1,175 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-20 19:15-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: caddybook/books/models.py:26
+msgid "Tee position"
+msgstr ""
+
+#: caddybook/books/models.py:27
+msgid "Basket position"
+msgstr ""
+
+#: caddybook/books/models.py:45
+msgid "Unnamed"
+msgstr ""
+
+#: caddybook/books/templates/books/base.html:6
+#: caddybook/books/templates/books/base.html:30
+msgid "Caddybook"
+msgstr ""
+
+#: caddybook/books/templates/books/base.html:33
+msgid "Courses"
+msgstr ""
+
+#: caddybook/books/templates/books/base_course.html:18
+msgid "Overview"
+msgstr ""
+
+#: caddybook/books/templates/books/base_course.html:21
+msgid "Jump to hole"
+msgstr ""
+
+#: caddybook/books/templates/books/base_hole.html:8
+msgid "Hole admin"
+msgstr ""
+
+#: caddybook/books/templates/books/base_hole.html:15
+msgid "Edit this hole"
+msgstr ""
+
+#: caddybook/books/templates/books/base_hole.html:20
+#: caddybook/books/templates/books/hole/edit_gallery.html:21
+msgid "Edit hole gallery"
+msgstr ""
+
+#: caddybook/books/templates/books/base_hole.html:25
+#: caddybook/books/templates/books/hole/edit_position.html:42
+msgid "Edit hole position"
+msgstr ""
+
+#: caddybook/books/templates/books/base_hole.html:30
+msgid "Set basket to my current position"
+msgstr ""
+
+#: caddybook/books/templates/books/base_hole.html:33
+msgid "Set teebox to my current position"
+msgstr ""
+
+#: caddybook/books/templates/books/bootstrap_form.html:26
+#: caddybook/books/templates/books/hole/edit_position.html:116
+msgid "Submit"
+msgstr ""
+
+#: caddybook/books/templates/books/course.html:10
+msgid "#"
+msgstr ""
+
+#: caddybook/books/templates/books/course.html:11
+msgid "Name"
+msgstr ""
+
+#: caddybook/books/templates/books/course.html:12
+#: caddybook/books/templates/books/hole.html:137
+msgid "Par"
+msgstr ""
+
+#: caddybook/books/templates/books/course.html:13
+#: caddybook/books/templates/books/hole.html:120
+msgid "Distance"
+msgstr ""
+
+#: caddybook/books/templates/books/course.html:27
+#: caddybook/books/templates/books/course.html:34
+#: caddybook/books/templates/books/hole.html:125
+#: caddybook/books/templates/books/hole.html:134
+#: caddybook/books/templates/books/hole.html:142
+msgid "N/A"
+msgstr ""
+
+#: caddybook/books/templates/books/course.html:32
+#: caddybook/books/templates/books/hole.html:123
+#: caddybook/books/templates/books/hole.html:132
+#, python-format
+msgid "%(distance)s meters"
+msgstr ""
+
+#: caddybook/books/templates/books/hole.html:23
+msgid "Waiting for geolocation..."
+msgstr ""
+
+#: caddybook/books/templates/books/hole.html:33
+msgid "Saving coordinates on server..."
+msgstr ""
+
+#: caddybook/books/templates/books/hole.html:61
+msgid "Images"
+msgstr ""
+
+#: caddybook/books/templates/books/hole.html:62
+msgid "Map"
+msgstr ""
+
+#: caddybook/books/templates/books/hole.html:117
+msgid "Course"
+msgstr ""
+
+#: caddybook/books/templates/books/hole.html:129
+msgid "GPS Distance"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/edit.html:7
+msgid "Edit hole"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/edit.html:9
+#: caddybook/books/templates/books/hole/edit_gallery.html:23
+#: caddybook/books/templates/books/hole/edit_position.html:44
+msgid "Back to hole"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/edit_gallery.html:34
+msgid "Delete image"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/edit_gallery.html:39
+msgid "Upload new image"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/edit_position.html:55
+#: caddybook/books/templates/books/hole/edit_position.html:70
+#: caddybook/books/templates/books/hole/edit_position.html:88
+#: caddybook/books/templates/books/hole/edit_position.html:103
+msgid "Set to my location"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/pager.html:5
+#: caddybook/books/templates/books/hole/pager.html:7
+msgid "Previous hole"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/pager.html:11
+#, python-format
+msgid "%(position)s of %(count)s"
+msgstr ""
+
+#: caddybook/books/templates/books/hole/pager.html:15
+#: caddybook/books/templates/books/hole/pager.html:17
+msgid "Next hole"
+msgstr ""
