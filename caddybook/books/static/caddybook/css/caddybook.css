@@ -10,6 +10,36 @@ body {padding-top: 60px;}
     margin-bottom: 10px;
 }
 
+
+/* CRUD stuff */
+.edit-image-gallery-thumbnails .btn-group {
+    display: block;
+}
+.edit-image-gallery-thumbnails .btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.edit-position-form .geoposition-widget {
+    width: 500px;
+    height: 320px;
+}
+
+.edit-position-form .geoposition-map {
+    height: 200px;
+}
+
+.edit-position-form .controls .btn-group {
+    margin-bottom: 10px;
+}
+
+.ajax-status-bar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100px;
+}
+
 /* Hole map stuff */
 #hole-map-container {
     width: 100%;
@@ -26,4 +56,9 @@ body {padding-top: 60px;}
 #hole-map-container label {
     width: auto;
     display: inline;
+}
+
+/* Small hack for Google Maps in geoposition-widget */
+.geoposition-widget img{
+    max-width: none;
 }
