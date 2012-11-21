@@ -1,7 +1,6 @@
-{% extends "books/base.html" %}
+{% extends "books/base_hole.html" %}
 {% load i18n %}
 {% load thumbnail %}
-
 
 {% block endbody %}
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMuBRUiUbR9bhWqHAU_PvJWDdoeAs0xHg&sensor=false"></script>
@@ -13,6 +12,34 @@
 $(function() {
     $('.gallery').colorbox({rel: 'hole-gallery',
         maxWidth: "95%", maxHeight: "95%"});
+
+    var status_bar = CADDYBOOK.module('caddybook').ajax_status_bar;
+    /* Deal with Geo links */
+    $('#set-basket-position, #set-tee-position').click(function(e) {
+        if(navigator.geolocation) {
+
+            status_bar.setWarning('Waiting for geolocation...');
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                /* Find which button was clicked */
+                var id = e.target.id.split('-')[1];
+
+                status_bar.setWarning('Saving coordinates on server...');
+
+                setTimeout(function() {
+                    status_bar.setSuccess('Done!');
+                }, 1000);
+
+            }, function() {
+                console.log('Error!');
+            });
+        }
+
+    });
 });
 </script>
 {% endblock %}
@@ -83,7 +110,7 @@ $(function() {
             </div>
         </div>
     </div>
-    <div class="span6">
+    <div class="span8">
         <h1>{{ hole }}</h1>
 
         <dl>
@@ -118,5 +145,4 @@ $(function() {
         </dl>
     </div>
 </div>
-
 {% endblock %}

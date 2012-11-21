@@ -1,0 +1,47 @@
+{% extends "books/base_hole.html" %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block endbody %}
+<script src="/static/colorbox/jquery.colorbox.js"></script>
+<script>
+$(function() {
+    $('.gallery').colorbox({rel: 'edit-gallery',
+        maxWidth: "95%", maxHeight: "95%"});
+});
+</script>
+{% endblock %}
+
+{% block endhead %}
+<link href="/static/colorbox/colorbox.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Edit hole gallery" %}</h1>
+
+<p><a href="{% url "books-hole" hole.course.slug hole.position %}">{% trans "Back to hole" %}</a></p>
+
+<ul class="thumbnails edit-image-gallery-thumbnails">
+    {% for image in hole.holegalleryimage_set.all %}
+    <li>
+        <a href="{{ image.image.url }}" class="thumbnail gallery">
+            {% thumbnail image.image "150x150" crop="center" as img %}
+            <img src="{{ img.url }}" alt="">
+            {% endthumbnail %}
+        </a>
+
+            <button class="btn btn-small">{% trans "Delete image" %}</button>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>{% trans "Upload new image" %}</h2>
+<form class="form-horizontal" method="post" action="{% url "books-hole-edit-gallery" hole.course.slug hole.id %}" enctype="multipart/form-data">{% csrf_token %}
+
+{% include "books/bootstrap_form.html" %}
+
+</form>
+
+
+{% endblock %}

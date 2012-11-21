@@ -1,0 +1,122 @@
+{% extends "books/base_hole.html" %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block endbody %}
+<script>
+$(function() {
+    /* We need to bind listeners for the buttons */
+    $('#btn-set-location-tee, #btn-set-location-basket').bind('click', function(e) {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                /* Find which button was clicked */
+                var id = e.target.id.split('-')[3];
+
+                /* Search for input fields */
+                var lat_field = $('#id_' + id + '_pos_0');
+                var lon_field = $('#id_' + id + '_pos_1');
+
+                /* Update the fields */
+                lat_field.val(lat);
+                lon_field.val(lon);
+
+            }, function() {
+                console.log('Error!');
+            });
+        }
+    });
+
+});
+</script>
+{% endblock %}
+
+{% block endhead %}
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Edit hole position" %}</h1>
+
+<p><a href="{% url "books-hole" hole.course.slug hole.position %}">{% trans "Back to hole" %}</a></p>
+
+<form class="form-horizontal edit-position-form" method="post" action="{% url "books-hole-edit-position" hole.course.slug hole.id %}" enctype="multipart/form-data">{% csrf_token %}
+
+<fieldset>
+    {% if form.tee_pos.errors %}
+        <div class="control-group error">
+            <label class="control-label" for="{{ form.tee_pos.auto_id }}">{{ form.tee_pos.label }}</label>
+            <div class="controls">
+
+                <div class="btn-group">
+                    <button type="button" class="btn" id="btn-set-location-tee">{% trans "Set to my location" %}</button>
+                </div>
+
+                {{ form.tee_pos }}
+                <span class="help-inline">
+                    {% for error in  form.tee_pos.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        </div>
+    {% else %}
+        <div class="control-group">
+            <label class="control-label" for="{{ form.tee_pos.auto_id }}">{{ form.tee_pos.label }}</label>
+            <div class="controls">
+
+                <div class="btn-group">
+                    <button type="button" class="btn" id="btn-set-location-tee">{% trans "Set to my location" %}</button>
+                </div>
+
+                {{ form.tee_pos }}
+                {% if form.tee_pos.help_text %}
+                    <p class="help-inline"><small>{{ form.tee_pos.help_text }}</small></p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+
+    {% if form.basket_pos.errors %}
+        <div class="control-group error">
+            <label class="control-label" for="{{ form.basket_pos.auto_id }}">{{ form.basket_pos.label }}</label>
+            <div class="controls">
+
+                <div class="btn-group">
+                    <button type="button" class="btn" id="btn-set-location-basket">{% trans "Set to my location" %}</button>
+                </div>
+
+                {{ form.basket_pos }}
+                <span class="help-inline">
+                    {% for error in  form.basket_pos.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        </div>
+    {% else %}
+        <div class="control-group">
+            <label class="control-label" for="{{ form.basket_pos.auto_id }}">{{ form.basket_pos.label }}</label>
+            <div class="controls">
+
+                <div class="btn-group">
+                    <button type="button" class="btn" id="btn-set-location-basket">{% trans "Set to my location" %}</button>
+                </div>
+
+                {{ form.basket_pos }}
+
+                {% if form.basket_pos.help_text %}
+                    <p class="help-inline"><small>{{ form.basket_pos.help_text }}</small></p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</form.basket_posset>
+<div class="form-actions">
+    <button type="submit" class="btn btn-primary" >{% trans "Submit" %}</button>
+</div>
+
+{{ form.media }}
+</form>
+
+{% endblock %}

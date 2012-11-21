@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% trans "Caddybook" %}</title>
+        <title>{% block title %}{% trans "Caddybook" %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -17,6 +17,8 @@
         {% block endhead %}{% endblock %}
     </head>
     <body>
+
+        {% block nav %}
         <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="navbar-inner">
             <div class="container">
@@ -34,8 +36,14 @@
             </div>
           </div>
         </div>
+        {% endblock %}
 
         <div class="container">
+
+            <div class="ajax-status-bar" style="display: none;">
+                <span class="label">Please wait or something...</span>
+            </div>
+
             {% block content %}{% endblock %}
         </div>
 

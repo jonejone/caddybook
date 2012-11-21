@@ -1,0 +1,38 @@
+{% extends "books/base_course.html" %}
+{% load i18n %}
+
+{% block extra_nav %}
+                <ul class="nav pull-right">
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {% trans "Hole admin" %}
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url "books-hole-edit" hole.course.slug hole.position %}">
+                                {% trans "Edit this hole" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url "books-hole-edit-gallery" hole.course.slug hole.position %}">
+                                {% trans "Edit hole gallery" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url "books-hole-edit-position" hole.course.slug hole.position %}">
+                                {% trans "Edit hole position" %}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="set-basket-position">{% trans "Set basket to my current position" %}</a>
+                        </li>
+                        <li>
+                            <a href="#" id="set-tee-position">{% trans "Set teebox to my current position" %}</a>
+                        </li>
+                    </ul>
+                  </li>
+                </ul>
+{% endblock %}
