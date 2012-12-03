@@ -10,6 +10,12 @@ body {padding-top: 60px;}
     margin-bottom: 10px;
 }
 
+/* Course overview page */
+.course-map {
+    border: 1px solid black;
+    width: 100%;
+    height: 400px;
+}
 
 /* CRUD stuff */
 .edit-image-gallery-thumbnails .btn-group {
@@ -23,11 +29,12 @@ body {padding-top: 60px;}
 
 .edit-position-form .geoposition-widget {
     width: 500px;
-    height: 320px;
+    height: 520px;
 }
 
 .edit-position-form .geoposition-map {
     height: 200px;
+    height: 400px;
 }
 
 .edit-position-form .controls .btn-group {
@@ -59,6 +66,8 @@ body {padding-top: 60px;}
 }
 
 /* Small hack for Google Maps in geoposition-widget */
-.geoposition-widget img{
+.geoposition-widget img,
+.course-map img,
+#hole-map-container img {
     max-width: none;
 }
