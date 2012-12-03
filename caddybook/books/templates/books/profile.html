@@ -1,0 +1,9 @@
+{% extends "books/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Your account" %}</h1>
+
+<p>{% blocktrans with domain=site.domain %}This is your account area on {{ domain }}, where you can make changes to your account, see courses, etc.{% endblocktrans %}</p>
+
+{% endblock %}
