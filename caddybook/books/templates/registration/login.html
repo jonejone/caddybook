@@ -1,0 +1,12 @@
+{% extends "books/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Login" %}</h1>
+
+<p>{% blocktrans %}Here you can login to your account.{% endblocktrans %}</p>
+
+<form class="form-horizontal" method="post" action="{% url "auth_login" %}" enctype="multipart/form-data">{% csrf_token %}
+    {% include "books/bootstrap_form.html" %}
+</form>
+{% endblock %}
