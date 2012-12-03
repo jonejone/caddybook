@@ -10,6 +10,7 @@ class Course(models.Model):
     slug = models.SlugField()
     url = models.URLField(_('URL'), blank=True, null=True)
     active = models.BooleanField(_('Active'))
+    description = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
