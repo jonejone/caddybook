@@ -1,0 +1,14 @@
+{% extends "books/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "About caddybok.no" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "About caddybok.no" %}</h1>
+
+    <p>{% blocktrans %}This site has been created to improve disc golf players ability to navigate on unplayed courses and get a detailed overview of a course. For each course you can have an internactive map showing all teeboxes and baskets, as well as navigate through each hole with both map and an image gallery for each hole.{% endblocktrans %}</p>
+
+    <p>{% blocktrans %}Currently there are only a few courses available in the southwest coast of Norway, more specifically the areas around the city of Haugesund.{% endblocktrans %}</p>
+
+    <p>{% blocktrans %}Mobile devices and tablets should work well on this site, and you should be able to use a phone or tablet to navigate around the course, while checking out pictures, detailed information like par, distances, description and more.{% endblocktrans %}</p>
+{% endblock %}
