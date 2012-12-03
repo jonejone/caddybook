@@ -1,0 +1,35 @@
+{% load i18n %}
+                <ul class="nav pull-right">
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {% trans "caddybok.no" %}
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url "books-about" %}">{% trans "About caddybok.no" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "books-index" %}">{% trans "Frontpage" %}</a>
+                        </li>
+                        <li class="divider"></li>
+
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url "books-profile" %}">{% trans "My account" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "auth_logout" %}">{% trans "Logout" %}</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="{% url "auth_login" %}">{% trans "Login" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "registration_register" %}">{% trans "Register" %}</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                  </li>
+                </ul>
