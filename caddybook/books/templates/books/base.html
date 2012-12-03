@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% trans "Caddybook" %}{% endblock %}</title>
+        <title>{% block title %}{% trans "Frisbee-golf and disc-golf courses - Caddybook" %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -32,6 +32,9 @@
                 <ul class="nav">
                   <li><a href="{% url "books-index" %}">{% trans "Courses" %}</a></li>
                 </ul>
+
+                {% include "books/caddybook_menu.html" %}
+
               </div>
             </div>
           </div>

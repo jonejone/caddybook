@@ -1,7 +1,14 @@
 {% extends "books/base.html" %}
+{% load i18n %}
 
 {% block content %}
-<h1>Courses</h1>
+<h1>{% trans "Welcome to caddybok.no!" %}</h1>
+
+<p>{% blocktrans %}This site tries to help disc golf courses present their layout on the web, with GPS coordinates, images, hole descriptions and attributes, and lots more. Currently we only have a few courses in the west coast of Norway, but we hope to add more soon, as well as add the possibility to add your own course!{% endblocktrans %}</p>
+
+<p>{% blocktrans %}You can also use a tablet or mobile device to browse this site. Images of holes are scaled down for tablets to reduce bandwidth use.{% endblocktrans %}</p>
+
+
 
 <ul>
     {% for course in courses %}

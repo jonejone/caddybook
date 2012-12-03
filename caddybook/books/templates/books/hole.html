@@ -39,8 +39,8 @@ $(function() {
     <div class="span4">
 
         <ul class="nav nav-tabs" id="hole-tabs">
-            <li class="active"><a href="#images" data-toggle="tab">{% trans "Images" %}</a></li>
-            <li><a href="#map" data-toggle="tab">{% trans "Map" %}</a></li>
+            <li class="active tab-images"><a href="#images" data-toggle="tab">{% trans "Images" %}</a></li>
+            <li class="tab-map"><a href="#map" data-toggle="tab">{% trans "Map" %}</a></li>
         </ul>
 
         <div class="tab-content">
@@ -84,6 +84,15 @@ $(function() {
                         {{ hole.get_basket_lat }},
                         {{ hole.get_basket_lon }});
 
+                    // Hack to fix Google Maps issue with display:hidden onload
+                    $('.tab-map a[data-toggle="tab"]').on('shown', function (e) {
+                        /* Fix the broken map with a resize */
+                        google.maps.event.trigger(map.map, 'resize');
+
+                        /* Re-center based on tee/basket pos */
+                        map.setCenter();
+                    });
+
                     window.map = map;
                 });
                 </script>
@@ -126,7 +135,7 @@ $(function() {
             <dt>{% trans "Description" %}</dt>
             <dd>
                 {% if hole.description %}
-                    {{ hole.description }}
+                    {{ hole.description|safe|linebreaks }}
                 {% else %}
                     <span class="muted">{% trans "N/A" %}</span>
                 {% endif %}

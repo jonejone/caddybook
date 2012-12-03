@@ -9,11 +9,6 @@
 <p><a href="{% url "books-hole" hole.course.slug hole.position %}">{% trans "Back to hole" %}</a></p>
 
 <form class="form-horizontal" method="post" action="{% url "books-hole-edit" hole.course.slug hole.id %}" enctype="multipart/form-data">{% csrf_token %}
-
-
-{% include "books/bootstrap_form.html" %}
-
+    {% include "books/bootstrap_form.html" %}
 </form>
-
-
 {% endblock %}

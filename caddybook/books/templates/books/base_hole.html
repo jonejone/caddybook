@@ -1,7 +1,11 @@
 {% extends "books/base_course.html" %}
 {% load i18n %}
 
+{% block title %}{{ hole.course.name }} - {{ hole.name }}{% endblock %}
+
 {% block extra_nav %}
+
+                {% if user.is_staff %}
                 <ul class="nav pull-right">
 
 
@@ -45,4 +49,5 @@
                     </ul>
                   </li>
                 </ul>
+                {% endif %}
 {% endblock %}

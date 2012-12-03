@@ -1,7 +1,7 @@
 {% extends "books/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ course.name }}{% endblock %}
+{% block title %}{% blocktrans with name=course.name %}{{ name }}, disc golf course map, pictures and more!{% endblocktrans %}{% endblock %}
 
 {% block nav %}
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,6 +28,9 @@
                     </ul>
                   </li>
                 </ul>
+
+                {% include "books/caddybook_menu.html" %}
+
 
                 {% block extra_nav %}{% endblock %}
               </div>
