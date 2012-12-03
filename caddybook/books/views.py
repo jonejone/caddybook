@@ -1,25 +1,64 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.conf import settings
 from django.core.context_processors import csrf
+from django.contrib.sites.models import get_current_site
+from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+
+import simplejson
 
 from caddybook.books.models import Course, Hole
 from caddybook.books.forms import HoleForm, HoleGalleryImageForm, HolePositionForm
 
+
+class AboutView(TemplateView):
+    template_name = 'books/about.html'
+
+
+@login_required
+def profile(request):
+    tmpl_data = {
+        'site': get_current_site(request),
+    }
+    return render(request, 'books/profile.html', tmpl_data)
+
+
 def index(request):
     courses = Course.objects.filter(active=True)
+    tmpl_data = {
+        'courses': courses,
+    }
+    return render(request, 'books/index.html', tmpl_data)
 
-    return render(request, 'books/index.html', {
-        'courses':courses})
 
 
 def course(request, slug):
     course = get_object_or_404(Course,
         slug=slug, active=True)
 
+    holes = []
+
+    for hole in course.hole_set.all():
+        holes.append({
+            'hole_position': hole.position,
+            'hole_id': hole.id,
+            'tee_pos': {
+                'lat': hole.tee_pos.latitude,
+                'lon': hole.tee_pos.longitude,
+            },
+            'basket_pos': {
+                'lat': hole.basket_pos.latitude,
+                'lon': hole.basket_pos.longitude,
+            },
+        })
+
+    holes_json = simplejson.dumps(holes)
+
     return render(request, 'books/course.html', {
-        'course': course })
+        'course':course, 'holes_json': holes_json,
+        'MAPS_API_KEY': settings.MAPS_API_KEY})
 
 
 def hole(request, slug, position):
