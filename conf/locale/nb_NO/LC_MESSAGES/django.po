@@ -1,24 +1,20 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Norwegian translation file for Caddybook app: https://github.com/jonejone/caddybook
+# Jone Eide <jone@idev.no>
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 19:28-0600\n"
+"POT-Creation-Date: 2012-12-03 11:16-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Last-Translator: Jone Eide <jone@idev.no>\n"
+"Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: caddybook/books/models.py:9 caddybook/books/models.py:22
-#: caddybook/books/templates/books/course.html:11
+#: caddybook/books/models.py:9 caddybook/books/models.py:23
+#: caddybook/books/templates/books/course.html:31
 msgid "Name"
 msgstr "Navn"
 
@@ -30,49 +26,118 @@ msgstr ""
 msgid "Active"
 msgstr "Aktiv"
 
-#: caddybook/books/models.py:20
-#, fuzzy
+#: caddybook/books/models.py:21
 msgid "Position"
 msgstr "Posisjon"
 
-#: caddybook/books/models.py:26
+#: caddybook/books/models.py:27
 msgid "Tee position"
 msgstr "Utkastposisjon"
 
-#: caddybook/books/models.py:27
+#: caddybook/books/models.py:28
 msgid "Basket position"
 msgstr "Kurvposisjon"
 
-#: caddybook/books/models.py:31 caddybook/books/templates/books/course.html:13
-#: caddybook/books/templates/books/hole.html:120
+#: caddybook/books/models.py:32 caddybook/books/templates/books/course.html:33
+#: caddybook/books/templates/books/hole.html:110
 msgid "Distance"
 msgstr "Distanse"
 
-#: caddybook/books/models.py:32
-#, fuzzy
+#: caddybook/books/models.py:33
 msgid "Distance to basket in meters"
 msgstr "Distanse til kurven i meter"
 
-#: caddybook/books/models.py:35 caddybook/books/templates/books/course.html:12
-#: caddybook/books/templates/books/hole.html:137
+#: caddybook/books/models.py:36 caddybook/books/templates/books/course.html:32
+#: caddybook/books/templates/books/hole.html:127
 msgid "Par"
 msgstr ""
 
-#: caddybook/books/models.py:38 caddybook/books/models.py:82
-#, fuzzy
+#: caddybook/books/models.py:39 caddybook/books/models.py:95
 msgid "Image"
-msgstr "Bilder"
+msgstr "Bilde"
 
-#: caddybook/books/models.py:41 caddybook/books/models.py:83
-#, fuzzy
+#: caddybook/books/models.py:42 caddybook/books/models.py:96
+#: caddybook/books/templates/books/hole.html:135
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: caddybook/books/models.py:47
+#: caddybook/books/models.py:60
 msgid "Unnamed"
 msgstr "Uten navn"
 
+#: caddybook/books/urls.py:12
+msgid "^about/$"
+msgstr "^om-caddybok/$"
+
+#: caddybook/books/urls.py:13
+msgid "^courses/(?P<slug>[-\\w]+)/$"
+msgstr "^baner/(?P<slug>[-\\w]+)/$"
+
+#: caddybook/books/urls.py:14
+msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/$"
+msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/$"
+
+#: caddybook/books/urls.py:16
+msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/edit/$"
+msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/rediger/$"
+
+#: caddybook/books/urls.py:18
+msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/edit/position/$"
+msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/rediger/posisjon/$"
+
+#: caddybook/books/urls.py:20
+msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/edit/gallery/$"
+msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/rediger/galleri/$"
+
+#: caddybook/books/urls.py:23
+msgid "^profile/$"
+msgstr "^profil/$"
+
+#: caddybook/books/urls.py:29
+msgid "^accounts/"
+msgstr "^kontoer/"
+
+#: caddybook/books/templates/books/about.html:4
+#: caddybook/books/templates/books/about.html:7
+#: caddybook/books/templates/books/caddybook_menu.html:11
+msgid "About caddybok.no"
+msgstr "Om caddybok.no"
+
+#: caddybook/books/templates/books/about.html:9
+msgid ""
+"This site has been created to improve disc golf players ability to navigate "
+"on unplayed courses and get a detailed overview of a course. For each course "
+"you can have an internactive map showing all teeboxes and baskets, as well "
+"as navigate through each hole with both map and an image gallery for each "
+"hole."
+msgstr ""
+"Caddybok.no ble laget som et forsøk på å gjøre det lettere for discgolf-"
+"spillere å finne nye baner å spille på, men som ikke vet hvor utkast og "
+"kurver er plassert. På denne siden får hver bane sitt eget kart, med "
+"detaljert beskrivelse av hvert hull, med bilder og mer."
+
+#: caddybook/books/templates/books/about.html:11
+msgid ""
+"Currently there are only a few courses available in the southwest coast of "
+"Norway, more specifically the areas around the city of Haugesund."
+msgstr ""
+"For øyblikket finnes det kun noen få baner tilgjengelig i Haugalands-området "
+"i Rogaland."
+
+#: caddybook/books/templates/books/about.html:13
+msgid ""
+"Mobile devices and tablets should work well on this site, and you should be "
+"able to use a phone or tablet to navigate around the course, while checking "
+"out pictures, detailed information like par, distances, description and more."
+msgstr ""
+"Smarttelefoner og nettbrett kan også bruke denne tjenesten, og du kan ha den "
+"med deg ut på  banen, og få tips og hint underveis. Den kan også hjelpe  deg "
+"med å finne neste teebox, o.l."
+
 #: caddybook/books/templates/books/base.html:6
+msgid "Frisbee-golf and disc-golf courses - Caddybook"
+msgstr "Disc-golf og frisbee-golf baner - Banekart, bilder, m.m."
+
 #: caddybook/books/templates/books/base.html:30
 msgid "Caddybook"
 msgstr "Caddybok"
@@ -80,6 +145,11 @@ msgstr "Caddybok"
 #: caddybook/books/templates/books/base.html:33
 msgid "Courses"
 msgstr "Baner"
+
+#: caddybook/books/templates/books/base_course.html:4
+#, python-format
+msgid "%(name)s, disc golf course map, pictures and more!"
+msgstr "%(name)s, disc-golf bane med banekart, bilder og mer!"
 
 #: caddybook/books/templates/books/base_course.html:18
 msgid "Overview"
@@ -89,29 +159,37 @@ msgstr "Oversikt"
 msgid "Jump to hole"
 msgstr "Hopp til hull"
 
-#: caddybook/books/templates/books/base_hole.html:8
+#: caddybook/books/templates/books/base_hole.html:13
+msgid "Set basket pos"
+msgstr "Sett kurvposisjon"
+
+#: caddybook/books/templates/books/base_hole.html:16
+msgid "Set teebox pos"
+msgstr "Sett utkastposisjon"
+
+#: caddybook/books/templates/books/base_hole.html:22
 msgid "Hole admin"
 msgstr "Hull admin"
 
-#: caddybook/books/templates/books/base_hole.html:15
+#: caddybook/books/templates/books/base_hole.html:29
 msgid "Edit this hole"
 msgstr "Rediger hull"
 
-#: caddybook/books/templates/books/base_hole.html:20
+#: caddybook/books/templates/books/base_hole.html:34
 #: caddybook/books/templates/books/hole/edit_gallery.html:21
 msgid "Edit hole gallery"
 msgstr "Rediger bildegalleri"
 
-#: caddybook/books/templates/books/base_hole.html:25
+#: caddybook/books/templates/books/base_hole.html:39
 #: caddybook/books/templates/books/hole/edit_position.html:42
 msgid "Edit hole position"
 msgstr "Rediger hullposisjon"
 
-#: caddybook/books/templates/books/base_hole.html:30
+#: caddybook/books/templates/books/base_hole.html:44
 msgid "Set basket to my current position"
 msgstr "Sett kurvplassering til min posisjon"
 
-#: caddybook/books/templates/books/base_hole.html:33
+#: caddybook/books/templates/books/base_hole.html:47
 msgid "Set teebox to my current position"
 msgstr "Sett utkastplassering til min posisjon"
 
@@ -120,48 +198,106 @@ msgstr "Sett utkastplassering til min posisjon"
 msgid "Submit"
 msgstr "Send"
 
-#: caddybook/books/templates/books/course.html:10
+#: caddybook/books/templates/books/caddybook_menu.html:5
+msgid "caddybok.no"
+msgstr "caddybok.no"
+
+#: caddybook/books/templates/books/caddybook_menu.html:14
+msgid "Frontpage"
+msgstr "Forside"
+
+#: caddybook/books/templates/books/caddybook_menu.html:20
+msgid "My account"
+msgstr "Min konto"
+
+#: caddybook/books/templates/books/caddybook_menu.html:23
+#: caddybook/books/templates/registration/logout.html:5
+msgid "Logout"
+msgstr "Logg ut"
+
+#: caddybook/books/templates/books/caddybook_menu.html:27
+#: caddybook/books/templates/registration/login.html:5
+msgid "Login"
+msgstr "Logg inn"
+
+#: caddybook/books/templates/books/caddybook_menu.html:30
+msgid "Register"
+msgstr "Registrer"
+
+#: caddybook/books/templates/books/course.html:30
 msgid "#"
 msgstr ""
 
-#: caddybook/books/templates/books/course.html:27
-#: caddybook/books/templates/books/course.html:34
-#: caddybook/books/templates/books/hole.html:125
-#: caddybook/books/templates/books/hole.html:134
-#: caddybook/books/templates/books/hole.html:142
-msgid "N/A"
-msgstr ""
-
-#: caddybook/books/templates/books/course.html:32
-#: caddybook/books/templates/books/hole.html:123
+#: caddybook/books/templates/books/course.html:47
+#: caddybook/books/templates/books/course.html:54
+#: caddybook/books/templates/books/hole.html:115
+#: caddybook/books/templates/books/hole.html:124
 #: caddybook/books/templates/books/hole.html:132
+#: caddybook/books/templates/books/hole.html:140
+msgid "N/A"
+msgstr "Ingen"
+
+#: caddybook/books/templates/books/course.html:52
+#: caddybook/books/templates/books/hole.html:113
+#: caddybook/books/templates/books/hole.html:122
 #, python-format
 msgid "%(distance)s meters"
 msgstr "%(distance)s meter"
 
-#: caddybook/books/templates/books/hole.html:23
-msgid "Waiting for geolocation..."
-msgstr ""
-
-#: caddybook/books/templates/books/hole.html:33
-msgid "Saving coordinates on server..."
-msgstr ""
-
-#: caddybook/books/templates/books/hole.html:61
+#: caddybook/books/templates/books/hole.html:42
 msgid "Images"
 msgstr "Bilder"
 
-#: caddybook/books/templates/books/hole.html:62
+#: caddybook/books/templates/books/hole.html:43
 msgid "Map"
 msgstr "Kart"
 
-#: caddybook/books/templates/books/hole.html:117
+#: caddybook/books/templates/books/hole.html:107
 msgid "Course"
 msgstr "Bane"
 
-#: caddybook/books/templates/books/hole.html:129
+#: caddybook/books/templates/books/hole.html:119
 msgid "GPS Distance"
 msgstr "GPS Distanse"
+
+#: caddybook/books/templates/books/index.html:5
+msgid "Welcome to caddybok.no!"
+msgstr "Velkommen til caddybok.no!"
+
+#: caddybook/books/templates/books/index.html:7
+msgid ""
+"This site tries to help disc golf courses present their layout on the web, "
+"with GPS coordinates, images, hole descriptions and attributes, and lots "
+"more. Currently we only have a few courses in the west coast of Norway, but "
+"we hope to add more soon, as well as add the possibility to add your own "
+"course!"
+msgstr ""
+"Denne siden lar discgolf-baner få presentere seg på nettet, med GPS "
+"koordinater, bilder, beskrivelser av hull og mye mer. Foreløpig har vi bare "
+"noen få baner i Haugalandsområdet men flere kommer etterhvert, samt "
+"muligheten for å legge inn ny bane selv."
+
+#: caddybook/books/templates/books/index.html:9
+msgid ""
+"You can also use a tablet or mobile device to browse this site. Images of "
+"holes are scaled down for tablets to reduce bandwidth use."
+msgstr ""
+"Du kan også bruke et nettbrett eller mobiltelefon for å bruke denne siden. "
+"Bilder av hull m.m. er skalert ned for nettbrett for å unngå høy "
+"båndbreddebruk."
+
+#: caddybook/books/templates/books/profile.html:5
+msgid "Your account"
+msgstr "Din konto"
+
+#: caddybook/books/templates/books/profile.html:7
+#, python-format
+msgid ""
+"This is your account area on %(domain)s, where you can make changes to your "
+"account, see courses, etc."
+msgstr ""
+"Dette er området for din konto på %(domain)s, hvor du får tilgang til å redigere din konto"
+", baner, med mer."
 
 #: caddybook/books/templates/books/hole/edit.html:7
 msgid "Edit hole"
@@ -202,3 +338,96 @@ msgstr "%(position)s av %(count)s"
 #: caddybook/books/templates/books/hole/pager.html:17
 msgid "Next hole"
 msgstr "Neste hull"
+
+#: caddybook/books/templates/registration/activate.html:5
+msgid "Activation failed"
+msgstr "Aktivering feilet"
+
+#: caddybook/books/templates/registration/activate.html:7
+msgid ""
+"Your attempt to activate your account has failed. Are you sure you clicked "
+"the link correctly, or pasted the activation code? Please check again. You "
+"could also see this error because your account has already been activated, "
+"for example because of clicking the link twice."
+msgstr ""
+"Ditt forsøk på å aktivere din konto har feilet. Er du sikker på at du klikket "
+"riktig på linken, eller limte inn din aktiveringskode? Vennligst prøv igjen. "
+"Det kan også være at du får feil fordi du allerede har aktivert din konto, f.eks"
+" ved å trykk eto ganger på linken."
+
+#: caddybook/books/templates/registration/activation_complete.html:5
+msgid "Activation completed"
+msgstr "Aktivering fullført"
+
+#: caddybook/books/templates/registration/activation_complete.html:7
+msgid ""
+"Your account has now been activated and is ready for you to login and start "
+"using."
+msgstr ""
+"Din konto har nå blitt aktivert og er klar for bruk."
+
+#: caddybook/books/templates/registration/activation_email.txt:3
+#, python-format
+msgid ""
+"\n"
+"Hello,\n"
+"\n"
+"You have received this email because someone have registered with your email "
+"address on %(domain)s.\n"
+"\n"
+"Please follow this link to activate your key: http://%(domain)s%(url)s\n"
+"\n"
+"If you don't click the link above to activate your account within "
+"%(expiration_days)s days, your account will be deleted automatically. \n"
+"\n"
+"Thanks and regards,\n"
+"%(domain)s\n"
+msgstr ""
+"\n"
+"Hallo,\n"
+"\n"
+"Du har mottatt denne mailen fordi noen har registrert seg med din epostadresse på "
+"%(domain)s.\n"
+"\n"
+"Vennligst trykk på denne linken for å aktivere din konto: http://%(domain)s%(url)s\n"
+"\n"
+"Hvis linken over ikke blir trykket på innen "
+"%(expiration_days)s dager vil din konto bli slettet automatisk. \n"
+"\n"
+"Med vennlig hilsen,\n"
+"%(domain)s\n"
+
+#: caddybook/books/templates/registration/activation_email_subject.txt:2
+#, python-format
+msgid "Activation key for account on %(domain)s"
+msgstr "Aktiveringskode for konto på %(domain)s"
+
+#: caddybook/books/templates/registration/login.html:7
+msgid "Here you can login to your account."
+msgstr "Her kan du logge inn på din konto."
+
+#: caddybook/books/templates/registration/logout.html:7
+msgid "You have now been logged out from your account."
+msgstr "Du er nå logget ut fra kontoen din."
+
+#: caddybook/books/templates/registration/registration_complete.html:5
+#: caddybook/books/templates/registration/registration_form.html:5
+msgid "Registration"
+msgstr "Registrering"
+
+#: caddybook/books/templates/registration/registration_complete.html:7
+msgid ""
+"Your account has now been created, and we have sent you an email containing "
+"your activation code. Please check this email and click the link inside."
+msgstr ""
+"Din konto har nå blitt opprettet, og vi har sendt deg en epost med din "
+"aktiveringskode. Vennligst sjekk denne mailen og trykk på linken for å aktivere din konto."
+
+#: caddybook/books/templates/registration/registration_form.html:7
+msgid ""
+"By creating an account on this site you can add new courses not already "
+"covered, as well as request to make changes on outdated courses, upload "
+"pictures and a lot more!"
+msgstr ""
+"Ved å opprette en konto på denne siden kan du legge til nye baner, samt "
+"legge inn forepørsel om å redigere utdaterte baner, laste opp bilder og mye mer."
