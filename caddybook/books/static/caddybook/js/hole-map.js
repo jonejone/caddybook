@@ -15,9 +15,6 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP,
         };
 
-        // TEMP
-        $('#hole-tabs a:last').tab('show');
-
         this.map = new google.maps.Map(this.container, this.map_options);
         this.buildMarkers();
         this.setCenter();
