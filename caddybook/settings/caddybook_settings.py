@@ -33,3 +33,4 @@ LANGUAGE_CODE = 'nb_NO'
 MEDIA_URL = '/media/'
 ACCOUNT_ACTIVATION_DAYS = 30
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEBUG = False
