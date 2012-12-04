@@ -1,3 +1,12 @@
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.auth.context_processors.auth",
+    "django.contrib.messages.context_processors.messages"
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -7,26 +16,20 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.markup',
+
     'django_extensions',
+    'registration',
     'sorl.thumbnail',
     'geoposition',
 
     'caddybook.books',
 )
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/jone/git-repos/caddybook/_db.db',
-    }
-}
 
 TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
 ROOT_URLCONF = 'caddybook.books.urls'
-#LANGUAGE_CODE = 'nb_NO'
-
-STATICFILES_DIRS = ('/home/jone/caddybook/static', '/home/jone/caddybook/caddybook/books/static')
-#LOCALE_PATHS = ('/home/jone/git-repos/clubmembers/conf/locale',)
-
-MEDIA_ROOT = '/home/jone/git-repos/caddybook/media'
+LANGUAGE_CODE = 'nb_NO'
 MEDIA_URL = '/media/'
+ACCOUNT_ACTIVATION_DAYS = 30
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
