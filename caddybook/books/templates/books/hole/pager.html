@@ -1,5 +1,5 @@
 {% load i18n %}
-<ul class="pager span8">
+<ul class="pager span12">
     <li class="previous">
         {% if hole.has_previous %}
             <a href="{% url "books-hole" hole.course.slug hole.previous_hole_position %}">&larr; {% trans "Previous hole" %}</a>
