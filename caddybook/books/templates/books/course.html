@@ -38,7 +38,13 @@ $(function() {
             <tr>
                 <td>{{ hole.position }}</td>
                 <td>
-                    <a href="{% url "books-hole" hole.course.slug hole.position %}">{{ hole.name }}</a>
+                    <a href="{% url "books-hole" hole.course.slug hole.position %}">
+                        {% if hole.name %}
+                            {{ hole.name }}
+                        {% else %}
+                            {% blocktrans with position=hole.position %}Hole {{ position }}{% endblocktrans %}
+                        {% endif %}
+                    </a>
                 </td>
                 <td>
                     {% if hole.par %}

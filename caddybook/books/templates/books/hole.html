@@ -92,8 +92,6 @@ $(function() {
                         /* Re-center based on tee/basket pos */
                         map.setCenter();
                     });
-
-                    window.map = map;
                 });
                 </script>
                <div class="hole-map-wrapper"><div id="hole-map-container"></div></div>
@@ -101,7 +99,10 @@ $(function() {
         </div>
     </div>
     <div class="span8">
-        <h1>{{ hole }}</h1>
+        <h1>
+            {% blocktrans with position=hole.position %}Hole {{ position }}{% endblocktrans %}
+            {% if hole.name %} - {{ hole.name }}{% endif %}
+        </h1>
 
         <dl>
             <dt>{% trans "Course" %}</dt>
