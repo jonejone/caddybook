@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 from sorl.thumbnail import ImageField
 from geoposition.fields import GeopositionField
 from geopy import distance, Point
@@ -11,6 +12,7 @@ class Course(models.Model):
     url = models.URLField(_('URL'), blank=True, null=True)
     active = models.BooleanField(_('Active'))
     description = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.name

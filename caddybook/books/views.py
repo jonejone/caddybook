@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.conf import settings
 from django.core.context_processors import csrf
 from django.contrib.sites.models import get_current_site
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+from django.views.defaults import permission_denied
 
 import simplejson
 
@@ -15,6 +16,15 @@ from caddybook.books.forms import HoleForm, HoleGalleryImageForm, HolePositionFo
 
 class AboutView(TemplateView):
     template_name = 'books/about.html'
+
+
+def _auth_course(user, course):
+    auth = False
+
+    if course.user == user or user.is_staff:
+        auth = True
+
+    return auth
 
 
 @login_required
@@ -68,9 +78,12 @@ def hole(request, slug, position):
     hole = Hole.objects.get(course=course,
         position=position)
 
+    can_edit = _auth_course(request.user, course)
+
     return render(request, 'books/hole.html', {
         'hole': hole, 'course': course,
         'MAPS_API_KEY': settings.MAPS_API_KEY,
+        'can_edit': can_edit,
         'CSRF': csrf(request)})
 
 
@@ -80,6 +93,9 @@ def hole_edit(request, slug, position):
 
     hole = Hole.objects.get(course=course,
         position=position)
+
+    if not _auth_course(request.user, course):
+        return HttpResponse('Access denied')
 
     if request.method == 'POST':
         form = HoleForm(request.POST, request.FILES,
@@ -104,6 +120,8 @@ def hole_edit_gallery(request, slug, position):
     hole = Hole.objects.get(course=course,
         position=position)
 
+    if not _auth_course(request.user, course):
+        return HttpResponse('Access denied')
 
     if request.method == 'POST':
         form = HoleGalleryImageForm(request.POST, request.FILES)
@@ -130,6 +148,9 @@ def hole_edit_position(request, slug, position):
 
     hole = Hole.objects.get(course=course,
         position=position)
+
+    if not _auth_course(request.user, course):
+        return HttpResponse('Access denied')
 
     if request.method == 'POST':
         form = HolePositionForm(request.POST, request.FILES,

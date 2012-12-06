@@ -14,6 +14,7 @@ $(function() {
     $('.gallery').colorbox({rel: 'hole-gallery',
         maxWidth: "95%", maxHeight: "95%"});
 
+    {% if can_edit %}
     /* Deal with buttons for saving position */
     $('.set-hole-position').click(function(e) {
         var HoleSetGeoPosition = CADDYBOOK.module('hole').HoleSetGeoPosition;
@@ -23,6 +24,7 @@ $(function() {
             'csrf_token': '{{ CSRF.csrf_token }}',
         })
     });
+    {% endif %}
 });
 </script>
 {% endblock %}
