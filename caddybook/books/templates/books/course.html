@@ -5,6 +5,7 @@
 {% block endbody %}
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ MAPS_API_KEY }}&sensor=false"></script>
 <script src="/static/caddybook/js/course.js"></script>
+{% if course.has_map %}
 <script>
 $(function() {
     var CourseMap = CADDYBOOK.module('course').CourseMap;
@@ -15,6 +16,7 @@ $(function() {
     });
 });
 </script>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -38,7 +40,7 @@ $(function() {
             <tr>
                 <td>{{ hole.position }}</td>
                 <td>
-                    <a href="{% url "books-hole" hole.course.slug hole.position %}">
+                    <a href="{{ hole.get_absolute_url }}">
                         {% if hole.name %}
                             {{ hole.name }}
                         {% else %}
@@ -65,11 +67,13 @@ $(function() {
         </tbody>
     </table>
 
+    {% if course.has_map %}
     <div class="course-map-wrapper span7">
         <div class="course-map">
 
         </div>
     </div>
+    {% endif %}
 
 </div>
 {% endblock %}

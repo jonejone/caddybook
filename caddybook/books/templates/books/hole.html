@@ -108,7 +108,7 @@ $(function() {
 
         <dl>
             <dt>{% trans "Course" %}</dt>
-            <dd><a href="{% url "books-course" hole.course.slug %}">{{ hole.course.name }}</a></dd>
+            <dd><a href="{{ hole.course.get_absolute_url }}">{{ hole.course.name }}</a></dd>
 
             <dt>{% trans "Distance" %}</dt>
             <dd>

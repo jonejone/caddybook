@@ -20,7 +20,7 @@ $(function() {
 
 <h1>{% trans "Edit hole gallery" %}</h1>
 
-<p><a href="{% url "books-hole" hole.course.slug hole.position %}">{% trans "Back to hole" %}</a></p>
+<p><a href="{{ hole.get_absolute_url }}">{% trans "Back to hole" %}</a></p>
 
 <ul class="thumbnails edit-image-gallery-thumbnails">
     {% for image in hole.holegalleryimage_set.all %}
@@ -37,11 +37,8 @@ $(function() {
 </ul>
 
 <h2>{% trans "Upload new image" %}</h2>
-<form class="form-horizontal" method="post" action="{% url "books-hole-edit-gallery" hole.course.slug hole.id %}" enctype="multipart/form-data">{% csrf_token %}
 
-{% include "books/bootstrap_form.html" %}
-
+<form class="form-horizontal" method="post" action="{{ hole.get_edit_gallery_url }}" enctype="multipart/form-data">{% csrf_token %}
+    {% include "books/bootstrap_form.html" %}
 </form>
-
-
 {% endblock %}

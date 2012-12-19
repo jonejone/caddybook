@@ -6,4 +6,19 @@
 
 <p>{% blocktrans with domain=site.domain %}This is your account area on {{ domain }}, where you can make changes to your account, see courses, etc.{% endblocktrans %}</p>
 
+
+<h2>{% trans "Your courses" %}</h2>
+<ul>
+    {% for course in user.course_set.all %}
+    <li>
+        <a href="{% url "books-user-course" user.username course.slug %}">
+            {{ course.name }}
+        </a>
+    </li>
+    {% empty %}
+    <li>{% trans "You have no courses in your account." %}</li>
+    {% endfor %}
+</ul>
+
+<p><a href="{% url "books-createcourse" %}" class="btn btn-primary">{% trans "Create new course" %}</a>
 {% endblock %}

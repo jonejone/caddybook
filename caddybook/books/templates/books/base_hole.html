@@ -8,41 +8,39 @@
 {% endblock %}
 
 {% block extra_nav %}
+{% if can_edit %}
+    <ul class="nav pull-right">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {% trans "Hole admin" %}
+            <b class="caret"></b>
+        </a>
 
-                {% if can_edit %}
-                <ul class="nav pull-right">
-
-                  <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {% trans "Hole admin" %}
-                        <b class="caret"></b>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{% url "books-hole-edit" hole.course.slug hole.position %}">
-                                {% trans "Edit this hole" %}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url "books-hole-edit-gallery" hole.course.slug hole.position %}">
-                                {% trans "Edit hole gallery" %}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url "books-hole-edit-position" hole.course.slug hole.position %}">
-                                {% trans "Edit hole position" %}
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#" class="set-hole-position" data-field-id="basket_pos">{% trans "Set basket to my current position" %}</a>
-                        </li>
-                        <li>
-                            <a href="#" class="set-hole-position" data-field-id="tee_pos">{% trans "Set teebox to my current position" %}</a>
-                        </li>
-                    </ul>
-                  </li>
-                </ul>
-                {% endif %}
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ hole.get_edit_url }}">
+                    {% trans "Edit this hole" %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ hole.get_edit_gallery_url }}">
+                    {% trans "Edit hole gallery" %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ hole.get_edit_position_url }}">
+                    {% trans "Edit hole position" %}
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#" class="set-hole-position" data-field-id="basket_pos">{% trans "Set basket to my current position" %}</a>
+            </li>
+            <li>
+                <a href="#" class="set-hole-position" data-field-id="tee_pos">{% trans "Set teebox to my current position" %}</a>
+            </li>
+        </ul>
+      </li>
+    </ul>
+{% endif %}
 {% endblock %}
