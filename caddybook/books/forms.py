@@ -7,7 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class CreateCourseForm(forms.ModelForm):
-    hole_count = forms.CharField()
+    hole_count = forms.IntegerField(
+        label=_('Hole count'), initial=18)
 
     class Meta:
         model = Course
