@@ -39,7 +39,7 @@ course_and_hole = '%s%s' % (unicode(course_base), unicode(hole_base))
 urlpatterns += patterns('',
     url(r'^%s$' % unicode(course_base), CourseView.as_view(), name='books-course'),
     url(r'^%s$' % (course_and_hole), HoleView.as_view(), name='books-hole'),
-    url(r'^%s%s$' % (course_and_hole, _('edit')),
+    url(r'^%s%s$' % (course_and_hole, _('edit/')),
         EditHoleView.as_view(), name='books-hole-edit'),
     url(r'^%s%s$' % (course_and_hole, _('edit/position/')),
         EditHolePositionView.as_view(), name='books-hole-edit-position'),
