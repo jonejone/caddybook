@@ -48,7 +48,8 @@ def create_course(request):
                 int(form.cleaned_data.get('hole_count')))
 
             return HttpResponseRedirect(reverse(
-                'books-user-course', args=[course.slug,]))
+                'books-user-course', args=[
+                request.user.username, course.slug]))
 
     else:
         form = CreateCourseForm()
