@@ -1,0 +1,14 @@
+{% extends "books/base_course.html" %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+
+<h1>{% trans "Edit course" %}</h1>
+
+<p><a href="{{ course.get_absolute_url }}">{% trans "Back to course" %}</a></p>
+
+<form class="form-horizontal" method="post" action="{{ course.get_edit_url }}" enctype="multipart/form-data">{% csrf_token %}
+    {% include "books/bootstrap_form.html" %}
+</form>
+{% endblock %}

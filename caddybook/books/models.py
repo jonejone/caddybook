@@ -13,12 +13,21 @@ class Course(models.Model):
     slug = models.SlugField()
     url = models.URLField(_('URL'), blank=True, null=True)
     active = models.BooleanField(_('Active'))
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(_('Description'),
+        blank=True, null=True)
     user = models.ForeignKey(User)
     published = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
+
+    def get_edit_url(self):
+        if self.published:
+            return reverse('books-course-edit', args=[
+                self.slug])
+        else:
+            return reverse('books-user-course-edit', args=[
+                self.user.username, self.slug])
 
     def get_absolute_url(self):
         if self.published:

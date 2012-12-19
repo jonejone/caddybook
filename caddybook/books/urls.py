@@ -9,6 +9,7 @@ from caddybook.books.classviews import (CourseView,
                                         HoleView,
                                         EditHoleView,
                                         EditHoleGalleryView,
+                                        EditCourseView,
                                         EditHolePositionView)
 from caddybook.books.views import AboutView
 
@@ -49,24 +50,31 @@ urlpatterns += patterns('',
 # User views
 user_base = _('users/(?P<username>[-\w]+)/')
 
+user_course_base = ''.join([
+    unicode(user_base), unicode(course_base)])
+
+user_course_hole_base = ''.join([
+    user_course_base, unicode(hole_base)])
+
 urlpatterns += patterns('caddybook.books.userviews',
-    url(r'^%s%s$' % (unicode(user_base), unicode(course_base)),
+    url(r'^%s$' % (user_course_base),
         CourseView.as_view(), name='books-user-course'),
 
-    url(r'^%s%s%s$' % (unicode(user_base), unicode(course_base),
-        unicode(hole_base)), HoleView.as_view(),
+    url(r'^%s%s$' % (user_course_base, _('edit/')),
+        EditCourseView.as_view(), name='books-user-course-edit'),
+
+    url(r'^%s$' % (user_course_hole_base), HoleView.as_view(),
         name='books-user-hole'),
 
-    url(r'^%s%s%s%s$' % (unicode(user_base), unicode(course_base),
-        unicode(hole_base), _('edit/')), EditHoleView.as_view(),
-        name='books-user-hole-edit'),
+    url(r'^%s%s$' % (user_course_hole_base, _('edit/')),
+        EditHoleView.as_view(), name='books-user-hole-edit'),
 
-    url(r'^%s%s%s%s$' % (unicode(user_base), unicode(course_base),
-        unicode(hole_base), _('edit/gallery/')), EditHoleGalleryView.as_view(),
+    url(r'^%s%s$' % (user_course_hole_base, _('edit/gallery/')),
+        EditHoleGalleryView.as_view(),
         name='books-user-hole-edit-gallery'),
 
-    url(r'^%s%s%s%s$' % (unicode(user_base), unicode(course_base),
-        unicode(hole_base), _('edit/position/')), EditHolePositionView.as_view(),
+    url(r'^%s%s$' % (user_course_hole_base, _('edit/position/')),
+        EditHolePositionView.as_view(),
         name='books-user-hole-edit-gallery'),
 )
 

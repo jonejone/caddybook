@@ -6,6 +6,12 @@ from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 
 
+class EditCourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        exclude = ('published', 'user', 'slug')
+
+
 class CreateCourseForm(forms.ModelForm):
     hole_count = forms.IntegerField(
         label=_('Hole count'), initial=18)

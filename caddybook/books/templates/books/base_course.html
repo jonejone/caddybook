@@ -37,6 +37,25 @@
 
                 {% include "books/caddybook_menu.html" %}
 
+                {% if can_edit_course %}
+                <ul class="nav pull-right">
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {% trans "Course admin" %}
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ course.get_edit_url }}">
+                                {% trans "Edit course" %}
+                            </a>
+                        </li>
+                    </ul>
+                  </li>
+                </ul>
+                {% endif %}
+
                 {% block extra_nav %}{% endblock %}
               </div>
             </div>

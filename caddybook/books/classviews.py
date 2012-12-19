@@ -7,7 +7,55 @@ import simplejson
 
 from caddybook.books.models import Course, Hole
 from caddybook.books.views import _auth_course
-from caddybook.books.forms import HoleForm, HoleGalleryImageForm, HolePositionForm
+from caddybook.books.forms import ( HoleForm,
+                                    HoleGalleryImageForm,
+                                    HolePositionForm,
+                                    EditCourseForm)
+
+class EditCourseView(View):
+    template_name = 'books/course/edit.html'
+
+    def get(self, request, **kwargs):
+        course = get_object_or_404(Course, slug=kwargs['slug'])
+
+        if not _auth_course(request.user, course):
+            return HttpResponse('Access denied')
+
+        form = EditCourseForm(instance=course)
+
+        tmpl_dict = {
+            'form': form,
+            'course': course,
+            'can_edit_course': True,
+        }
+
+        return render(request, self.template_name, tmpl_dict)
+
+    def post(self, request, **kwargs):
+        course = get_object_or_404(Course, slug=kwargs['slug'])
+
+        if not _auth_course(request.user, course):
+            return HttpResponse('Access denied')
+
+        form = EditCourseForm(request.POST,
+            instance=course)
+
+        if form.is_valid():
+            new_course = form.save(commit=False)
+            # TODO: Here we must create new slug??
+            new_course.save()
+
+            return HttpResponseRedirect(
+                course.get_absolute_url())
+
+        tmpl_dict = {
+            'form': form,
+            'course': course,
+            'can_edit_course': True,
+        }
+
+        return render(request, self.template_name, tmpl_dict)
+
 
 
 class EditHoleView(View):
@@ -124,7 +172,8 @@ class CourseView(TemplateView):
 
         return render(request, self.template_name, {
             'course':course, 'holes_json': holes_json,
-            'MAPS_API_KEY': settings.MAPS_API_KEY})
+            'MAPS_API_KEY': settings.MAPS_API_KEY,
+            'can_edit_course': _auth_course(request.user, course)})
 
 
 class EditHoleGalleryView(View):
