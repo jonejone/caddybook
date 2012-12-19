@@ -7,11 +7,12 @@ from django.contrib.sites.models import get_current_site
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.views.defaults import permission_denied
+from django.utils.text import slugify
 
 import simplejson
 
 from caddybook.books.models import Course, Hole
-from caddybook.books.forms import HoleForm, HoleGalleryImageForm, HolePositionForm
+from caddybook.books.forms import HoleForm, HoleGalleryImageForm, HolePositionForm, CreateCourseForm
 
 
 class AboutView(TemplateView):
@@ -28,6 +29,38 @@ def _auth_course(user, course):
 
 
 @login_required
+def create_course(request):
+
+    if request.method == 'POST':
+        form = CreateCourseForm(request.POST)
+
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.user = request.user
+
+            course.slug = Course.slugify_unique(
+                slugify(course.name))
+
+            course.save()
+
+            # Now that we have saved, we can create holes
+            course.create_holes(
+                int(form.cleaned_data.get('hole_count')))
+
+            return HttpResponseRedirect(reverse(
+                'books-user-course', args=[course.slug,]))
+
+    else:
+        form = CreateCourseForm()
+
+    tmpl_data = {
+        'form': form,
+    }
+
+    return render(request, 'books/account/create_course.html', tmpl_data)
+
+
+@login_required
 def profile(request):
     tmpl_data = {
         'site': get_current_site(request),
@@ -41,7 +74,6 @@ def index(request):
         'courses': courses,
     }
     return render(request, 'books/index.html', tmpl_data)
-
 
 
 def course(request, slug):
