@@ -2,6 +2,7 @@ from django.views.generic.base import TemplateView, View
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 import simplejson
 
@@ -42,11 +43,15 @@ class EditCourseView(View):
 
         if form.is_valid():
             new_course = form.save(commit=False)
-            # TODO: Here we must create new slug??
+
+            # Make sure we get a unique slug
+            new_course.slug = Course.slugify_unique(
+                slugify(new_course.name))
+
             new_course.save()
 
             return HttpResponseRedirect(
-                course.get_absolute_url())
+                new_course.get_absolute_url())
 
         tmpl_dict = {
             'form': form,
