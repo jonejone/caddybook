@@ -70,7 +70,9 @@ def profile(request):
 
 
 def index(request):
-    courses = Course.objects.filter(active=True)
+    courses = Course.objects.filter(active=True,
+        published=True)
+
     tmpl_data = {
         'courses': courses,
     }
