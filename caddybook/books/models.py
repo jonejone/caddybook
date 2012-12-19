@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from sorl.thumbnail import ImageField
 from geoposition.fields import GeopositionField
+from geoposition import Geoposition
 from geopy import distance, Point
 
 
@@ -13,10 +15,44 @@ class Course(models.Model):
     active = models.BooleanField(_('Active'))
     description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User)
+    published = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        if self.published:
+            return reverse('books-course', args=[
+                self.slug])
+        else:
+            return reverse('books-user-course', args=[
+                self.user.username, self.slug])
+
+    def create_holes(self, count):
+        for x in range(1, count+1, 1):
+            h = Hole()
+            h.course = self
+            h.par = 3
+            h.position = x
+            h.save()
+
+    def has_map(self):
+        if hasattr(self, '_has_map'):
+            return self._has_map
+
+        for h in self.hole_set.all():
+            if not h.has_positions():
+                return False
+
+        return True
+
+    @staticmethod
+    def slugify_unique(slug):
+        s = Course.objects.filter(slug=slug)
+        if len(s) > 0:
+            return Course.slugify_unique('%s-' % slug)
+
+        return slug
 
 class Hole(models.Model):
     course = models.ForeignKey(Course)
@@ -42,6 +78,45 @@ class Hole(models.Model):
 
     description = models.TextField(
         _('Description'), blank=True, null=True)
+
+
+    def get_absolute_url(self):
+        if self.course.published:
+            return reverse('books-hole',
+                args=[self.course.slug,
+                    self.position])
+        else:
+            return reverse('books-user-hole',
+                args=[self.course.user.username,
+                    self.course.slug,
+                    self.position])
+
+    def get_url_by_key(self, key):
+        if self.course.published:
+            url = 'books-%s' % key
+            args = [self.course.slug, self.position]
+        else:
+            url = 'books-user-%s' % key
+            args = [self.course.user.username,
+                self.course.slug, self.position]
+
+        return reverse(url, args=args)
+
+    def get_edit_url(self):
+        return self.get_url_by_key('hole-edit')
+
+    def get_edit_position_url(self):
+        return self.get_url_by_key('hole-edit-position')
+
+    def get_edit_gallery_url(self):
+        return self.get_url_by_key('hole-edit-gallery')
+
+    def has_positions(self):
+        if self.tee_pos.latitude != 0:
+            if self.basket_pos.latitude != 0:
+                return True
+
+        return False
 
     def get_tee_lat(self):
         return '%s' % self.tee_pos.latitude
@@ -76,11 +151,20 @@ class Hole(models.Model):
     def next_hole_position(self):
         return self.position + 1
 
+    def next_hole_url(self):
+        next_pos = self.next_hole_position()
+        hole = self.course.hole_set.get(position=next_pos)
+        return hole.get_absolute_url()
+
+    def previous_hole_url(self):
+        prev_pos = self.previous_hole_position()
+        hole = self.course.hole_set.get(position=prev_pos)
+        return hole.get_absolute_url()
+
     def previous_hole_position(self):
         return self.position - 1
 
     def gps_distance(self):
-
         if self.tee_pos.latitude is 0 or self.basket_pos.latitude == 0:
             return False
 
