@@ -16,16 +16,6 @@ from caddybook.books.views import AboutView
 urlpatterns = patterns('caddybook.books.views',
     url(r'^$', 'index', name='books-index'),
     url(_(r'^about/$'), AboutView.as_view(), name='books-about'),
-    url(_(r'^courses/(?P<slug>[-\w]+)/$'), CourseView.as_view(), name='books-course'),
-    url(_(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/$'),
-        HoleView.as_view(), name='books-hole'),
-    url(_(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/$'),
-        EditHoleView.as_view(), name='books-hole-edit'),
-    url(_(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/position/$'),
-        EditHolePositionView.as_view(), name='books-hole-edit-position'),
-    url(_(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/gallery/$'),
-        EditHoleGalleryView.as_view(), name='books-hole-edit-gallery'),
-
     url(_(r'^profile/$'), 'profile', name='books-profile'),
 
     # Enable admin site
@@ -39,22 +29,45 @@ urlpatterns = patterns('caddybook.books.views',
         'create_course', name='books-createcourse'),
 )
 
+# Course management views
+
+course_base = _('courses/(?P<slug>[-\w]+)/')
+hole_base = _('holes/(?P<position>\d+)/')
+course_and_hole = '%s%s' % (unicode(course_base), unicode(hole_base))
+
+urlpatterns += patterns('',
+    url(r'^%s$' % unicode(course_base), CourseView.as_view(), name='books-course'),
+    url(r'^%s$' % (course_and_hole), HoleView.as_view(), name='books-hole'),
+    url(r'^%s%s$' % (course_and_hole, _('edit')),
+        EditHoleView.as_view(), name='books-hole-edit'),
+    url(r'^%s%s$' % (course_and_hole, _('edit/position/')),
+        EditHolePositionView.as_view(), name='books-hole-edit-position'),
+    url(r'^%s%s$' % (course_and_hole, _('edit/gallery/')),
+        EditHoleGalleryView.as_view(), name='books-hole-edit-gallery'),
+)
+
 # User views
+user_base = _('users/(?P<username>[-\w]+)/')
+
 urlpatterns += patterns('caddybook.books.userviews',
-    url(_(r'^users/(?P<username>[-\w]+)/courses/(?P<slug>[-\w]+)/$'),
+    url(r'^%s%s$' % (unicode(user_base), unicode(course_base)),
         CourseView.as_view(), name='books-user-course'),
 
-    url(_(r'^users/(?P<username>[-\w]+)/courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/$'),
-        HoleView.as_view(), name='books-user-hole'),
+    url(r'^%s%s%s$' % (unicode(user_base), unicode(course_base),
+        unicode(hole_base)), HoleView.as_view(),
+        name='books-user-hole'),
 
-    url(_(r'^users/(?P<username>[-\w]+)/courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/$'),
-        EditHoleView.as_view(), name='books-user-hole-edit'),
+    url(r'^%s%s%s%s$' % (unicode(user_base), unicode(course_base),
+        unicode(hole_base), _('edit/')), EditHoleView.as_view(),
+        name='books-user-hole-edit'),
 
-    url(_(r'^users/(?P<username>[-\w]+)/courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/gallery/$'),
-        EditHoleGalleryView.as_view(), name='books-user-hole-edit-gallery'),
+    url(r'^%s%s%s%s$' % (unicode(user_base), unicode(course_base),
+        unicode(hole_base), _('edit/gallery/')), EditHoleGalleryView.as_view(),
+        name='books-user-hole-edit-gallery'),
 
-    url(_(r'^users/(?P<username>[-\w]+)/courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/edit/position/$'),
-        EditHolePositionView.as_view(), name='books-user-hole-edit-position'),
+    url(r'^%s%s%s%s$' % (unicode(user_base), unicode(course_base),
+        unicode(hole_base), _('edit/position/')), EditHolePositionView.as_view(),
+        name='books-user-hole-edit-gallery'),
 )
 
 # AJAX views
