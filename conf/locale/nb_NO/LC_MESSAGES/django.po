@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-06 12:50-0600\n"
+"POT-Creation-Date: 2012-12-19 15:46-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jone Eide <jone@idev.no>\n"
 "Language: nb_NO\n"
@@ -13,89 +13,102 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: caddybook/books/models.py:9 caddybook/books/models.py:23
-#: caddybook/books/templates/books/course.html:31
+#: caddybook/books/models.py:12 caddybook/books/models.py:61
+#: caddybook/books/templates/books/course.html:33
 msgid "Name"
 msgstr "Navn"
 
-#: caddybook/books/models.py:11
+#: caddybook/books/models.py:14
 msgid "URL"
 msgstr ""
 
-#: caddybook/books/models.py:12
+#: caddybook/books/models.py:15
 msgid "Active"
 msgstr "Aktiv"
 
-#: caddybook/books/models.py:21
+#: caddybook/books/models.py:59
 msgid "Position"
 msgstr "Posisjon"
 
-#: caddybook/books/models.py:27
+#: caddybook/books/models.py:65
 msgid "Tee position"
 msgstr "Utkastposisjon"
 
-#: caddybook/books/models.py:28
+#: caddybook/books/models.py:66
 msgid "Basket position"
 msgstr "Kurvposisjon"
 
-#: caddybook/books/models.py:32 caddybook/books/templates/books/course.html:33
-#: caddybook/books/templates/books/hole.html:111
+#: caddybook/books/models.py:70 caddybook/books/templates/books/course.html:35
+#: caddybook/books/templates/books/hole.html:113
 msgid "Distance"
 msgstr "Distanse"
 
-#: caddybook/books/models.py:33
+#: caddybook/books/models.py:71
 msgid "Distance to basket in meters"
 msgstr "Distanse til kurven i meter"
 
-#: caddybook/books/models.py:36 caddybook/books/templates/books/course.html:32
-#: caddybook/books/templates/books/hole.html:128
+#: caddybook/books/models.py:74 caddybook/books/templates/books/course.html:34
+#: caddybook/books/templates/books/hole.html:130
 msgid "Par"
 msgstr ""
 
-#: caddybook/books/models.py:39 caddybook/books/models.py:95
+#: caddybook/books/models.py:77 caddybook/books/models.py:181
 msgid "Image"
 msgstr "Bilde"
 
-#: caddybook/books/models.py:42 caddybook/books/models.py:96
-#: caddybook/books/templates/books/hole.html:136
+#: caddybook/books/models.py:80 caddybook/books/models.py:182
+#: caddybook/books/templates/books/hole.html:138
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: caddybook/books/models.py:60
+#: caddybook/books/models.py:137
 msgid "Unnamed"
 msgstr "Uten navn"
 
-#: caddybook/books/urls.py:12
+#: caddybook/books/urls.py:18
 msgid "^about/$"
 msgstr "^om-caddybok/$"
 
-#: caddybook/books/urls.py:13
-msgid "^courses/(?P<slug>[-\\w]+)/$"
-msgstr "^baner/(?P<slug>[-\\w]+)/$"
-
-#: caddybook/books/urls.py:14
-msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/$"
-msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/$"
-
-#: caddybook/books/urls.py:16
-msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/edit/$"
-msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/rediger/$"
-
-#: caddybook/books/urls.py:18
-msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/edit/position/$"
-msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/rediger/posisjon/$"
-
-#: caddybook/books/urls.py:20
-msgid "^courses/(?P<slug>[-\\w]+)/holes/(?P<position>\\d+)/edit/gallery/$"
-msgstr "^baner/(?P<slug>[-\\w]+)/hull/(?P<position>\\d+)/rediger/galleri/$"
-
-#: caddybook/books/urls.py:23
+#: caddybook/books/urls.py:19
 msgid "^profile/$"
 msgstr "^profil/$"
 
-#: caddybook/books/urls.py:29
+#: caddybook/books/urls.py:25
 msgid "^accounts/"
 msgstr "^kontoer/"
+
+#: caddybook/books/urls.py:28
+msgid "^accounts/create-course/$"
+msgstr "^kontoer/lag-ny-bane/$"
+
+#: caddybook/books/urls.py:34
+msgid "courses/(?P<slug>[-\\w]+)/"
+msgstr "baner/(?P<slug>[-\\w]+)/"
+
+#: caddybook/books/urls.py:35
+msgid "holes/(?P<position>\\d+)/"
+msgstr "hull/(?P<position>\\d+)/"
+
+#: caddybook/books/urls.py:41
+msgid "edit"
+msgstr ""
+
+#: caddybook/books/urls.py:43 caddybook/books/urls.py:69
+#, fuzzy
+msgid "edit/position/"
+msgstr "rediger/posisjon/"
+
+#: caddybook/books/urls.py:45 caddybook/books/urls.py:65
+msgid "edit/gallery/"
+msgstr "rediger/galleri/"
+
+#: caddybook/books/urls.py:50
+msgid "users/(?P<username>[-\\w]+)/"
+msgstr "brukere/(?P<username>[-\\w]+)/"
+
+#: caddybook/books/urls.py:61
+msgid "edit/"
+msgstr "rediger/"
 
 #: caddybook/books/templates/books/about.html:4
 #: caddybook/books/templates/books/about.html:7
@@ -159,36 +172,37 @@ msgstr "Oversikt"
 msgid "Jump to hole"
 msgstr "Hopp til hull"
 
+#: caddybook/books/templates/books/base_course.html:30
 #: caddybook/books/templates/books/base_hole.html:5
-#: caddybook/books/templates/books/course.html:45
-#: caddybook/books/templates/books/hole.html:103
+#: caddybook/books/templates/books/course.html:47
+#: caddybook/books/templates/books/hole.html:105
 #, python-format
 msgid "Hole %(position)s"
 msgstr "Hull %(position)s"
 
-#: caddybook/books/templates/books/base_hole.html:17
+#: caddybook/books/templates/books/base_hole.html:15
 msgid "Hole admin"
 msgstr "Hull admin"
 
-#: caddybook/books/templates/books/base_hole.html:24
+#: caddybook/books/templates/books/base_hole.html:22
 msgid "Edit this hole"
 msgstr "Rediger hull"
 
-#: caddybook/books/templates/books/base_hole.html:29
+#: caddybook/books/templates/books/base_hole.html:27
 #: caddybook/books/templates/books/hole/edit_gallery.html:21
 msgid "Edit hole gallery"
 msgstr "Rediger bildegalleri"
 
-#: caddybook/books/templates/books/base_hole.html:34
+#: caddybook/books/templates/books/base_hole.html:32
 #: caddybook/books/templates/books/hole/edit_position.html:42
 msgid "Edit hole position"
 msgstr "Rediger hullposisjon"
 
-#: caddybook/books/templates/books/base_hole.html:39
+#: caddybook/books/templates/books/base_hole.html:37
 msgid "Set basket to my current position"
 msgstr "Sett kurvplassering til min posisjon"
 
-#: caddybook/books/templates/books/base_hole.html:42
+#: caddybook/books/templates/books/base_hole.html:40
 msgid "Set teebox to my current position"
 msgstr "Sett utkastplassering til min posisjon"
 
@@ -223,39 +237,39 @@ msgstr "Logg inn"
 msgid "Register"
 msgstr "Registrer"
 
-#: caddybook/books/templates/books/course.html:30
+#: caddybook/books/templates/books/course.html:32
 msgid "#"
 msgstr ""
 
-#: caddybook/books/templates/books/course.html:53
-#: caddybook/books/templates/books/course.html:60
-#: caddybook/books/templates/books/hole.html:116
-#: caddybook/books/templates/books/hole.html:125
-#: caddybook/books/templates/books/hole.html:133
-#: caddybook/books/templates/books/hole.html:141
+#: caddybook/books/templates/books/course.html:55
+#: caddybook/books/templates/books/course.html:62
+#: caddybook/books/templates/books/hole.html:118
+#: caddybook/books/templates/books/hole.html:127
+#: caddybook/books/templates/books/hole.html:135
+#: caddybook/books/templates/books/hole.html:143
 msgid "N/A"
 msgstr "Ingen"
 
-#: caddybook/books/templates/books/course.html:58
-#: caddybook/books/templates/books/hole.html:114
-#: caddybook/books/templates/books/hole.html:123
+#: caddybook/books/templates/books/course.html:60
+#: caddybook/books/templates/books/hole.html:116
+#: caddybook/books/templates/books/hole.html:125
 #, python-format
 msgid "%(distance)s meters"
 msgstr "%(distance)s meter"
 
-#: caddybook/books/templates/books/hole.html:42
+#: caddybook/books/templates/books/hole.html:44
 msgid "Images"
 msgstr "Bilder"
 
-#: caddybook/books/templates/books/hole.html:43
+#: caddybook/books/templates/books/hole.html:45
 msgid "Map"
 msgstr "Kart"
 
-#: caddybook/books/templates/books/hole.html:108
+#: caddybook/books/templates/books/hole.html:110
 msgid "Course"
 msgstr "Bane"
 
-#: caddybook/books/templates/books/hole.html:120
+#: caddybook/books/templates/books/hole.html:122
 msgid "GPS Distance"
 msgstr "GPS Distanse"
 
@@ -297,6 +311,22 @@ msgid ""
 msgstr ""
 "Dette er området for din konto på %(domain)s, hvor du får tilgang til å "
 "redigere din konto, baner, med mer."
+
+#: caddybook/books/templates/books/profile.html:10
+msgid "Your courses"
+msgstr "Dine baner"
+
+#: caddybook/books/templates/books/profile.html:19
+msgid "You have no courses in your account."
+msgstr "Du har ingen baner lagret på din konto."
+
+#: caddybook/books/templates/books/profile.html:23
+msgid "Create new course"
+msgstr "Lag ny bane"
+
+#: caddybook/books/templates/books/account/create_course.html:7
+msgid "Create course"
+msgstr "Lag ny bane"
 
 #: caddybook/books/templates/books/hole/edit.html:7
 msgid "Edit hole"
@@ -433,8 +463,4 @@ msgstr ""
 "legge inn forepørsel om å redigere utdaterte baner, laste opp bilder og mye "
 "mer."
 
-#~ msgid "Set basket pos"
-#~ msgstr "Sett kurvposisjon"
 
-#~ msgid "Set teebox pos"
-#~ msgstr "Sett utkastposisjon"
