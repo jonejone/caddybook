@@ -79,6 +79,8 @@ class Hole(models.Model):
     description = models.TextField(
         _('Description'), blank=True, null=True)
 
+    class Meta:
+        ordering = ['position',]
 
     def get_absolute_url(self):
         if self.course.published:
