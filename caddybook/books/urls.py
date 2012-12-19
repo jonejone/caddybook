@@ -75,7 +75,7 @@ urlpatterns += patterns('caddybook.books.userviews',
 
     url(r'^%s%s$' % (user_course_hole_base, _('edit/position/')),
         EditHolePositionView.as_view(),
-        name='books-user-hole-edit-gallery'),
+        name='books-user-hole-edit-position'),
 )
 
 # AJAX views
