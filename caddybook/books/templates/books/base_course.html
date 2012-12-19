@@ -12,10 +12,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </a>
-              <a class="brand" href="{% url "books-course" course.slug %}">{{ course.name }}</a>
+              <a class="brand" href="{{ course.get_absolute_url }}">{{ course.name }}</a>
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li><a href="{% url "books-course" course.slug %}">{% trans "Overview" %}</a></li>
+                  <li><a href="{{ course.get_absolute_url }}">{% trans "Overview" %}</a></li>
                   <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {% trans "Jump to hole" %}
@@ -23,14 +23,19 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for hole in course.hole_set.all %}
-                        <li><a href="{% url "books-hole" course.slug hole.position %}">{{ hole.name }}</a></li>
+                        <li><a href="{{ hole.get_absolute_url }}">
+                            {% if hole.name %}
+                                {{ hole.name }}
+                            {% else %}
+                                {% blocktrans with position=hole.position %}Hole {{ position }}{% endblocktrans %}
+                            {% endif %}
+                        </a></li>
                         {% endfor %}
                     </ul>
                   </li>
                 </ul>
 
                 {% include "books/caddybook_menu.html" %}
-
 
                 {% block extra_nav %}{% endblock %}
               </div>

@@ -11,7 +11,7 @@
 <ul>
     {% for course in user.course_set.all %}
     <li>
-        <a href="{% url "books-user-course" user.username course.slug %}">
+        <a href="{{ course.get_absolute_url }}">
             {{ course.name }}
         </a>
     </li>
