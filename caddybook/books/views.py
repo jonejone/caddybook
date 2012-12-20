@@ -15,10 +15,6 @@ from caddybook.books.models import Course, Hole
 from caddybook.books.forms import CreateCourseForm
 
 
-class AboutView(TemplateView):
-    template_name = 'books/about.html'
-
-
 def _auth_course(user, course):
     auth = False
 
@@ -28,8 +24,14 @@ def _auth_course(user, course):
     return auth
 
 
-@login_required
 def create_course(request):
+
+    if not request.user.is_authenticated():
+        tmpl_dict = {
+            'site': get_current_site(request),
+        }
+        return render(request,
+            'books/account/create_course_nologin.html', tmpl_dict)
 
     if request.method == 'POST':
         form = CreateCourseForm(request.POST)
@@ -56,9 +58,11 @@ def create_course(request):
 
     tmpl_data = {
         'form': form,
+        'site': get_current_site(request),
     }
 
-    return render(request, 'books/account/create_course.html', tmpl_data)
+    return render(request,
+        'books/account/create_course.html', tmpl_data)
 
 
 @login_required
