@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-19 17:19-0600\n"
+"POT-Creation-Date: 2012-12-20 03:10-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jone Eide <jone@idev.no>\n"
 "Language: nb_NO\n"
@@ -85,33 +85,30 @@ msgstr "^kontoer/"
 msgid "^accounts/create-course/$"
 msgstr "^kontoer/lag-ny-bane/$"
 
-#: caddybook/books/urls.py:35
+#: caddybook/books/urls.py:34
 msgid "courses/(?P<slug>[-\\w]+)/"
 msgstr "baner/(?P<slug>[-\\w]+)/"
 
-#: caddybook/books/urls.py:36
+#: caddybook/books/urls.py:35
 msgid "holes/(?P<position>\\d+)/"
 msgstr "hull/(?P<position>\\d+)/"
 
-#: caddybook/books/urls.py:42
-msgid "edit"
-msgstr ""
+#: caddybook/books/urls.py:42 caddybook/books/urls.py:48
+#: caddybook/books/urls.py:71 caddybook/books/urls.py:77
+msgid "edit/"
+msgstr "rediger/"
 
-#: caddybook/books/urls.py:44 caddybook/books/urls.py:76
+#: caddybook/books/urls.py:51 caddybook/books/urls.py:84
 msgid "edit/position/"
 msgstr "rediger/posisjon/"
 
-#: caddybook/books/urls.py:46 caddybook/books/urls.py:72
+#: caddybook/books/urls.py:54 caddybook/books/urls.py:80
 msgid "edit/gallery/"
 msgstr "rediger/galleri/"
 
-#: caddybook/books/urls.py:51
+#: caddybook/books/urls.py:59
 msgid "users/(?P<username>[-\\w]+)/"
 msgstr "brukere/(?P<username>[-\\w]+)/"
-
-#: caddybook/books/urls.py:63 caddybook/books/urls.py:69
-msgid "edit/"
-msgstr "rediger/"
 
 #: caddybook/books/templates/books/about.html:4
 #: caddybook/books/templates/books/about.html:7
@@ -161,6 +158,11 @@ msgstr "Caddybok"
 #: caddybook/books/templates/books/base.html:48
 msgid "Courses"
 msgstr "Baner"
+
+#: caddybook/books/templates/books/base.html:49
+#: caddybook/books/templates/books/profile.html:23
+msgid "Create new course"
+msgstr "Lag ny bane"
 
 #: caddybook/books/templates/books/base_course.html:4
 #, python-format
@@ -241,6 +243,7 @@ msgid "Logout"
 msgstr "Logg ut"
 
 #: caddybook/books/templates/books/caddybook_menu.html:27
+#: caddybook/books/templates/books/account/create_course_nologin.html:16
 #: caddybook/books/templates/registration/login.html:5
 msgid "Login"
 msgstr "Logg inn"
@@ -332,13 +335,42 @@ msgstr "Dine baner"
 msgid "You have no courses in your account."
 msgstr "Du har ingen baner lagret på din konto."
 
-#: caddybook/books/templates/books/profile.html:23
-msgid "Create new course"
-msgstr "Lag ny bane"
-
-#: caddybook/books/templates/books/account/create_course.html:7
+#: caddybook/books/templates/books/account/create_course.html:6
+#: caddybook/books/templates/books/account/create_course_nologin.html:7
 msgid "Create course"
 msgstr "Lag ny bane"
+
+#: caddybook/books/templates/books/account/create_course.html:8
+#: caddybook/books/templates/books/account/create_course_nologin.html:9
+#, python-format
+msgid ""
+"If you would like to add a new course that isn't already covered on "
+"%(domain)s, you are more than welcome to do so! You will be able to edit "
+"hole details, upload images, set teebox/basket GPS positions, and a lot more!"
+msgstr ""
+"Hvis du har lyst til å legge til en ny bane vi ikke har dekket på "
+"%(domain)s, er du mer enn velkommen til å gjøre det! Du vil få mulighet til "
+"å redigere hulldetaljer, laste opp bilder, sette utkast/kurv-koordinater, og "
+"mye mer."
+
+#: caddybook/books/templates/books/account/create_course.html:8
+msgid ""
+"Please enter the official name for the course below, and the hole count for "
+"the course."
+msgstr ""
+"Vennligst fyll inn offisielt navn og antall hull for den nye banen under."
+
+#: caddybook/books/templates/books/account/create_course_nologin.html:12
+msgid ""
+"In order to add a new course you need to be logged in to an account. Please "
+"login or register."
+msgstr ""
+"For å legge til en ny bane må du være logget inn på en konto. Vennligst logg "
+"inn eller registrer deg."
+
+#: caddybook/books/templates/books/account/create_course_nologin.html:17
+msgid "Register new account"
+msgstr "Registrer ny konto"
 
 #: caddybook/books/templates/books/course/edit.html:9
 msgid "Back to course"
