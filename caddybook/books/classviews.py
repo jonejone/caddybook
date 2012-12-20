@@ -13,6 +13,11 @@ from caddybook.books.forms import ( HoleForm,
                                     HolePositionForm,
                                     EditCourseForm)
 
+
+class AboutView(TemplateView):
+    template_name = 'books/about.html'
+
+
 class EditCourseView(View):
     template_name = 'books/course/edit.html'
 
