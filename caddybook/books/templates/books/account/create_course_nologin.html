@@ -1,0 +1,20 @@
+{% extends "books/base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+
+<h1>{% trans "Create course" %}</h1>
+
+<p>{% blocktrans with domain=site.domain %}If you would like to add a new course that isn't already covered on {{ domain }}, you are more than welcome to do so! You will be able to edit hole details, upload images, set teebox/basket GPS positions, and a lot more!{% endblocktrans %}</p>
+
+<div class="alert alert-error">
+    {% blocktrans with domain=site.domain %}In order to add a new course you need to be logged in to an account. Please login or register.{% endblocktrans %}
+    &nbsp;&nbsp;
+
+    <div class="btn-group">
+        <a class="btn btn-primary" href="{% url "auth_login" %}">{% trans "Login" %}</a>
+        <a class="btn btn-primary" href="{% url "registration_register" %}">{% trans "Register new account" %}</a>
+    </div>
+</div>
+{% endblock %}

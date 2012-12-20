@@ -3,8 +3,9 @@
 {% load thumbnail %}
 
 {% block content %}
-
 <h1>{% trans "Create course" %}</h1>
+
+<p>{% blocktrans with domain=site.domain %}If you would like to add a new course that isn't already covered on {{ domain }}, you are more than welcome to do so! You will be able to edit hole details, upload images, set teebox/basket GPS positions, and a lot more!{% endblocktrans %} {% trans "Please enter the official name for the course below, and the hole count for the course." %}</p>
 
 <form class="form-horizontal" method="post" action="{% url "books-createcourse" %}" enctype="multipart/form-data">{% csrf_token %}
     {% include "books/bootstrap_form.html" %}

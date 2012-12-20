@@ -10,8 +10,8 @@ from caddybook.books.classviews import (CourseView,
                                         EditHoleView,
                                         EditHoleGalleryView,
                                         EditCourseView,
-                                        EditHolePositionView)
-from caddybook.books.views import AboutView
+                                        EditHolePositionView,
+                                        AboutView)
 
 
 urlpatterns = patterns('caddybook.books.views',
@@ -31,7 +31,6 @@ urlpatterns = patterns('caddybook.books.views',
 )
 
 # Course management views
-
 course_base = _('courses/(?P<slug>[-\w]+)/')
 hole_base = _('holes/(?P<position>\d+)/')
 course_and_hole = '%s%s' % (unicode(course_base), unicode(hole_base))
