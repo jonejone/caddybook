@@ -1,0 +1,16 @@
+#Django==1.4
+https://www.djangoproject.com/download/1.5b2/tarball/
+boto==2.6.0
+Markdown==2.2.1
+psycopg2==2.4.5
+dj-database-url==0.2.0
+PIL==1.1.7
+django-extensions==1.0.1
+django-geoposition==0.1.4
+django-markdown==0.1.0
+django-registration==0.8
+django-storages==1.1.5
+geopy==0.94.2
+markdown2==2.1.0
+simplejson==2.6.2
+sorl-thumbnail==11.12
