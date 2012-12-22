@@ -4,7 +4,7 @@
 
 {% block endbody %}
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ MAPS_API_KEY }}&sensor=false"></script>
-<script src="/static/caddybook/js/course.js"></script>
+<script src="{{ STATIC_URL }}caddybook/js/course.js"></script>
 {% if course.has_map %}
 <script>
 $(function() {

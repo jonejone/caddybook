@@ -4,9 +4,9 @@
 
 {% block endbody %}
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ MAPS_API_KEY }}&sensor=false"></script>
-<script src="/static/caddybook/js/hole.js"></script>
-<script src="/static/caddybook/js/hole-map.js"></script>
-<script src="/static/colorbox/jquery.colorbox.js"></script>
+<script src="{{ STATIC_URL }}caddybook/js/hole.js"></script>
+<script src="{{ STATIC_URL }}caddybook/js/hole-map.js"></script>
+<script src="{{ STATIC_URL }}colorbox/jquery.colorbox.js"></script>
 <script>
 $(function() {
 
@@ -30,7 +30,7 @@ $(function() {
 {% endblock %}
 
 {% block endhead %}
-<link href="/static/colorbox/colorbox.css" rel="stylesheet">
+<link href="{{ STATIC_URL }}colorbox/colorbox.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
