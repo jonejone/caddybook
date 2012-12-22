@@ -22,6 +22,8 @@ INSTALLED_APPS = (
     'registration',
     'sorl.thumbnail',
     'geoposition',
+    'boto',
+    'storages',
 
     'caddybook.books',
 )
