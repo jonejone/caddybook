@@ -1,3 +1,9 @@
+import os
+import dj_database_url
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT,'staticfiles/')
+
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
@@ -35,3 +41,21 @@ LANGUAGE_CODE = 'nb_NO'
 MEDIA_URL = '/media/'
 ACCOUNT_ACTIVATION_DAYS = 30
 DEBUG = False
+DATABASES = {'default': dj_database_url.config()}
+
+# S3 configuration
+STATICFILES_STORAGE = 'caddybook.s3utils.StaticRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'caddybook.s3utils.MediaRootS3BotoStorage'
+
+if os.environ.get('AWS_ACCESS_KEY_ID'):
+    try:
+        AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+        AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+        AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+        AWS_BUCKET_NAME = os.environ['AWS_BUCKET_NAME']
+    except:
+        pass
+
+AWS_BUCKET_URL = 'https://s3.amazonaws.com/%s/' % AWS_BUCKET_NAME
+STATIC_URL = '%sstatic/' % AWS_BUCKET_URL
+MEDIA_URL = '%smedia/' % AWS_BUCKET_URL
