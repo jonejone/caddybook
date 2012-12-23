@@ -1,1 +1,1 @@
-web: gunicorn caddybook/wsgi
+web: gunicorn caddybook.wsgi:application
