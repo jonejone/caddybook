@@ -40,9 +40,14 @@ INSTALLED_APPS = (
 TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
 ROOT_URLCONF = 'caddybook.books.urls'
 LANGUAGE_CODE = 'nb_NO'
+MAPS_API_KEY = 'AIzaSyBMuBRUiUbR9bhWqHAU_PvJWDdoeAs0xHg'
 MEDIA_URL = '/media/'
 ACCOUNT_ACTIVATION_DAYS = 30
+
 DEBUG = False
+if os.environ.get('CADDYBOOK_DEBUG'):
+    DEBUG = True
+
 DATABASES = {'default': dj_database_url.config()}
 LOCALE_PATHS = (PROJECT_ROOT + '/conf/locale',)
 
