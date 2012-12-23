@@ -42,6 +42,7 @@ MEDIA_URL = '/media/'
 ACCOUNT_ACTIVATION_DAYS = 30
 DEBUG = False
 DATABASES = {'default': dj_database_url.config()}
+LOCALE_PATHS = (PROJECT_ROOT + '/conf/locale',)
 
 # S3 configuration
 STATICFILES_STORAGE = 'caddybook.s3utils.StaticRootS3BotoStorage'
