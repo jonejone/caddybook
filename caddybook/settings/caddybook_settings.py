@@ -62,3 +62,6 @@ if os.environ.get('AWS_ACCESS_KEY_ID'):
 AWS_BUCKET_URL = 'https://s3.amazonaws.com/%s/' % AWS_BUCKET_NAME
 STATIC_URL = '%sstatic/' % AWS_BUCKET_URL
 MEDIA_URL = '%smedia/' % AWS_BUCKET_URL
+ADMINS = (
+    ('Jone Eide', 'jone@idev.no'),
+)
