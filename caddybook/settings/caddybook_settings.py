@@ -56,13 +56,10 @@ STATICFILES_STORAGE = 'caddybook.s3utils.StaticRootS3BotoStorage'
 DEFAULT_FILE_STORAGE = 'caddybook.s3utils.MediaRootS3BotoStorage'
 
 if os.environ.get('AWS_ACCESS_KEY_ID'):
-    try:
         AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
         AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
         AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
         AWS_BUCKET_NAME = os.environ['AWS_BUCKET_NAME']
-    except:
-        pass
 
 AWS_BUCKET_URL = 'https://s3.amazonaws.com/%s/' % AWS_BUCKET_NAME
 STATIC_URL = '%sstatic/' % AWS_BUCKET_URL
