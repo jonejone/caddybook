@@ -1,13 +1,18 @@
 
 (function(hole_map) {
     
-    var HoleMapManager = function(container, tee_lat, tee_lon,
-        basket_lat, basket_lon) {
+    var HoleMapManager = function(config) {
 
-        this.container = container;
-        this.tee_pos = new google.maps.LatLng(tee_lat, tee_lon);
-        this.basket_pos = new google.maps.LatLng(basket_lat,
-            basket_lon);
+        this.config = config;
+        this.container = config.container;
+
+        this.tee_pos = new google.maps.LatLng(config.tee_lat,
+            config.tee_lon);
+
+        this.basket_pos = new google.maps.LatLng(
+            config.basket_lat, config.basket_lon);
+
+        console.log(this.config);
 
         this.map_options = {
             center: this.tee_pos,
@@ -65,7 +70,7 @@
             this.basket_marker = new google.maps.Marker({
                 position: this.basket_pos,
                 map: this.map,
-                icon: '/static/caddybook/img/basket-map-icon.png'
+                icon: this.config.static_url + 'caddybook/img/basket-map-icon.png'
             });
 
         },

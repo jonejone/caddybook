@@ -79,12 +79,16 @@ $(function() {
                 <script>
                 $(function() {
                     var HoleMapManager = CADDYBOOK.module('hole_map').HoleMapManager;
-                    var container = $('#hole-map-container').get(0);
-                    var map = new HoleMapManager(container,
-                        {{ hole.get_tee_lat }},
-                        {{ hole.get_tee_lon }},
-                        {{ hole.get_basket_lat }},
-                        {{ hole.get_basket_lon }});
+                    var map_config = {
+                        'container': $('#hole-map-container').get(0),
+                        'static_url': '{{ STATIC_URL }}',
+                        'tee_lat': {{ hole.get_tee_lat }},
+                        'tee_lon': {{ hole.get_tee_lon }},
+                        'basket_lat': {{ hole.get_basket_lat }},
+                        'basket_lon': {{ hole.get_basket_lon }}
+                    };
+
+                    var map = new HoleMapManager(map_config);
 
                     // Hack to fix Google Maps issue with display:hidden onload
                     $('.tab-map a[data-toggle="tab"]').on('shown', function (e) {

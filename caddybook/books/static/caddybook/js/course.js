@@ -42,7 +42,8 @@
                     var basket_marker = new google.maps.Marker({
                         position: basket_pos,
                         map: this.map,
-                        icon: '/static/caddybook/img/basket-map-icon.png'
+                        icon: this.config.static_url +
+                            'caddybook/img/basket-map-icon.png'
                     });
 
                     var tee_marker = new google.maps.Marker({

@@ -13,6 +13,7 @@ $(function() {
     new CourseMap({
         'container': $('.course-map').get(0),
         'holes': $.parseJSON('{{ holes_json|safe }}'),
+        'static_url': '{{ STATIC_URL }}'
     });
 });
 </script>
