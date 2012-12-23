@@ -1,1 +1,1 @@
-web: gunicorn caddybook.wsgi:application
+web: newrelic-admin run-program gunicorn caddybook.wsgi:application
