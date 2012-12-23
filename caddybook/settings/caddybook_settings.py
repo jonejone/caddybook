@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'geoposition',
     'boto',
     'storages',
+    'gunicorn',
 
     'caddybook.books',
 )
