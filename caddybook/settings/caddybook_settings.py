@@ -1,7 +1,9 @@
 import os
 import dj_database_url
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..'))
+
 STATIC_ROOT = os.path.join(PROJECT_ROOT,'staticfiles/')
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
