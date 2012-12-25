@@ -13,6 +13,11 @@ body {padding-top: 60px;}
     -webkit-box-sizing: border-box;
 }
 
+/*  Description fields */
+.control-group textarea#id_description {
+    width: 75%; 
+}
+
 /* Course overview page */
 .course-map {
     border: 1px solid black;
