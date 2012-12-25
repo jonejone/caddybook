@@ -1,1 +1,3 @@
 Small Django application to serve online caddy-books for disc golf courses.
+
+Currently deployed to www.caddybok.no in a Norwegian locale
