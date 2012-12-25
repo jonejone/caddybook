@@ -47,11 +47,14 @@ class EditCourseView(View):
             instance=course)
 
         if form.is_valid():
+            old_name = course.name
             new_course = form.save(commit=False)
 
-            # Make sure we get a unique slug
-            new_course.slug = Course.slugify_unique(
-                slugify(new_course.name))
+            if old_name != new_course.name:
+                # Make sure we get a unique slug since
+                # the name has changed.
+                new_course.slug = Course.slugify_unique(
+                    slugify(new_course.name))
 
             new_course.save()
 
