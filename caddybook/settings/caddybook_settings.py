@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'caddybook.books',
 )
 
-
+LOGIN_REDIRECT_URL = '/profil'
 TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
 ROOT_URLCONF = 'caddybook.books.urls'
 LANGUAGE_CODE = 'nb_NO'
