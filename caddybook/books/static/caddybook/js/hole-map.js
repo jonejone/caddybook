@@ -12,8 +12,6 @@
         this.basket_pos = new google.maps.LatLng(
             config.basket_lat, config.basket_lon);
 
-        console.log(this.config);
-
         this.map_options = {
             center: this.tee_pos,
             zoom: 18, // # TODO: Should be calculated, not static
