@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView, View
+from django.core.context_processors import csrf
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -144,6 +145,7 @@ class HoleView(TemplateView):
             'MAPS_API_KEY': settings.MAPS_API_KEY,
             'hole': hole,
             'course': course,
+            'CSRF': csrf(request),
         }
 
         return render(request, 'books/hole.html', tmpl_dict)

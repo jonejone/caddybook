@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.conf import settings
-from django.core.context_processors import csrf
 from django.contrib.sites.models import get_current_site
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
