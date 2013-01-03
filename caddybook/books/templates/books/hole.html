@@ -17,10 +17,11 @@ $(function() {
     {% if can_edit %}
     /* Deal with buttons for saving position */
     $('.set-hole-position').click(function(e) {
+        console.log('Got here??');
         var HoleSetGeoPosition = CADDYBOOK.module('hole').HoleSetGeoPosition;
         var hole_geo = new HoleSetGeoPosition({
             'field': $(this).data('fieldId'),
-            'url': '{% url "books-ajax-set-hole-geoposition" hole.course.slug hole.position %}',
+            'url': '{{ hole.get_ajax_set_pos_url }}',
             'csrf_token': '{{ CSRF.csrf_token }}',
         })
     });

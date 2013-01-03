@@ -113,6 +113,9 @@ class Hole(models.Model):
 
         return reverse(url, args=args)
 
+    def get_ajax_set_pos_url(self):
+        return self.get_url_by_key('ajax-set-hole-position')
+
     def get_edit_url(self):
         return self.get_url_by_key('hole-edit')
 
