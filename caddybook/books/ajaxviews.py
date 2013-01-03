@@ -1,23 +1,30 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
+from django.views.generic.base import View
 
 import simplejson
 
 from caddybook.books.forms import HolePositionFormAjax
 from caddybook.books.models import Hole, Course
+from caddybook.books.views import _auth_course
 
 
-def set_hole_geoposition(request, slug, position):
-    course = get_object_or_404(Course,
-        slug=slug, active=True)
+class SetHolePositionView(View):
+    def post(self, request, **kwargs):
 
-    hole = Hole.objects.get(course=course,
-        position=position)
+        course = get_object_or_404(Course,
+            slug=kwargs['slug'])
 
-    response_dict = {'success': False, 'error': None}
+        hole = Hole.objects.get(course=course,
+            position=kwargs['position'])
 
-    if request.method == 'POST':
+        if not _auth_course(request.user, course):
+            return HttpResponse(simplejson.dumps({'success': False,
+                'error': 'Access denied'}),
+                mimetype='application/javascript')
+
         form = HolePositionFormAjax(request.POST, hole=hole)
+        response_dict = {'success': False, 'error': None}
 
         if form.is_valid():
             h = form.save()
@@ -26,9 +33,6 @@ def set_hole_geoposition(request, slug, position):
             response_dict['distance'] = h.gps_distance()
         else:
             response_dict['error'] = 'Form did not validate'
-    else:
-        response_dict['error'] = 'Only POST accepted'
 
-
-    return HttpResponse(simplejson.dumps(response_dict),
-        mimetype='application/javascript')
+        return HttpResponse(simplejson.dumps(response_dict),
+            mimetype='application/javascript')

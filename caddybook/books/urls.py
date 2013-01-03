@@ -13,6 +13,8 @@ from caddybook.books.classviews import (CourseView,
                                         EditHolePositionView,
                                         AboutView)
 
+from caddybook.books.ajaxviews import SetHolePositionView
+
 
 urlpatterns = patterns('caddybook.books.views',
     url(r'^$', 'index', name='books-index'),
@@ -88,8 +90,13 @@ urlpatterns += patterns('caddybook.books.userviews',
 
 # AJAX views
 urlpatterns += patterns('caddybook.books.ajaxviews',
-    url(r'^courses/(?P<slug>[-\w]+)/holes/(?P<position>\d+)/ajax/set-hole-geoposition/$',
-        'set_hole_geoposition', name='books-ajax-set-hole-geoposition'),
+    url(r'^%s%s$' % (user_course_hole_base, _('ajax/set-hole-position/')),
+        SetHolePositionView.as_view(),
+        name='books-user-ajax-set-hole-position'),
+
+    url(r'^%s%s$' % (course_and_hole, _('ajax/set-hole-position/')),
+        SetHolePositionView.as_view(),
+        name='books-ajax-set-hole-position'),
 )
 
 # Turn on static file serving while on devserver
