@@ -9,6 +9,7 @@ def flake8():
         'find . -name "*.py" -print0 | xargs -0 flake8',
         capture=False)
 
+
 def deploy():
     with cd('/home/jone/caddybook/project'):
         run('git pull')
