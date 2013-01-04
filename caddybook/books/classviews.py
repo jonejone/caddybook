@@ -9,10 +9,10 @@ import simplejson
 
 from caddybook.books.models import Course, Hole
 from caddybook.books.views import _auth_course
-from caddybook.books.forms import ( HoleForm,
-                                    HoleGalleryImageForm,
-                                    HolePositionForm,
-                                    EditCourseForm)
+from caddybook.books.forms import (HoleForm,
+                                   HoleGalleryImageForm,
+                                   HolePositionForm,
+                                   EditCourseForm)
 
 
 class AboutView(TemplateView):
@@ -45,7 +45,7 @@ class EditCourseView(View):
             return HttpResponse('Access denied')
 
         form = EditCourseForm(request.POST,
-            instance=course)
+                              instance=course)
 
         if form.is_valid():
             old_name = course.name
@@ -71,7 +71,6 @@ class EditCourseView(View):
         return render(request, self.template_name, tmpl_dict)
 
 
-
 class EditHoleView(View):
     template_name = 'books/hole/edit.html'
 
@@ -81,7 +80,7 @@ class EditHoleView(View):
 
         course = get_object_or_404(Course, slug=course_slug)
         hole = get_object_or_404(Hole, course=course,
-            position=hole_position)
+                                 position=hole_position)
 
         return course, hole
 
@@ -108,7 +107,7 @@ class EditHoleView(View):
             return HttpResponse('Access denied')
 
         form = HoleForm(request.POST, request.FILES,
-            instance=hole)
+                        instance=hole)
 
         if form.is_valid():
             saved_hole = form.save()
@@ -133,10 +132,10 @@ class HoleView(TemplateView):
         position = kwargs.get('position')
 
         course = get_object_or_404(Course,
-            slug=course_slug)
+                                   slug=course_slug)
 
         hole = Hole.objects.get(course=course,
-            position=position)
+                                position=position)
 
         can_edit = _auth_course(request.user, course)
 
@@ -159,13 +158,13 @@ class CourseView(TemplateView):
 
         if kwargs.get('username'):
             user = get_object_or_404(User,
-                username=kwargs.get('username'))
+                                     username=kwargs.get('username'))
 
             course = get_object_or_404(Course,
-                slug=course_slug, user=user)
+                                       slug=course_slug, user=user)
         else:
             course = get_object_or_404(Course,
-                slug=course_slug, active=True)
+                                       slug=course_slug, active=True)
 
         holes = []
 
@@ -186,9 +185,9 @@ class CourseView(TemplateView):
         holes_json = simplejson.dumps(holes)
 
         return render(request, self.template_name, {
-            'course':course, 'holes_json': holes_json,
-            'MAPS_API_KEY': settings.MAPS_API_KEY,
-            'can_edit_course': _auth_course(request.user, course)})
+                      'course': course, 'holes_json': holes_json,
+                      'MAPS_API_KEY': settings.MAPS_API_KEY,
+                      'can_edit_course': _auth_course(request.user, course)})
 
 
 class EditHoleGalleryView(View):
@@ -242,7 +241,7 @@ class EditHoleGalleryView(View):
 
         course = get_object_or_404(Course, slug=course_slug)
         hole = get_object_or_404(Hole, course=course,
-            position=hole_position)
+                                 position=hole_position)
 
         return course, hole
 
@@ -274,7 +273,7 @@ class EditHolePositionView(View):
             return HttpResponse('Access denied')
 
         form = HolePositionForm(request.POST, request.FILES,
-            instance=hole)
+                                instance=hole)
 
         if form.is_valid():
             form.save()
@@ -296,6 +295,6 @@ class EditHolePositionView(View):
 
         course = get_object_or_404(Course, slug=course_slug)
         hole = get_object_or_404(Hole, course=course,
-            position=hole_position)
+                                 position=hole_position)
 
         return course, hole

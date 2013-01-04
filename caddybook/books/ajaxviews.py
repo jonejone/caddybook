@@ -13,15 +13,15 @@ class SetHolePositionView(View):
     def post(self, request, **kwargs):
 
         course = get_object_or_404(Course,
-            slug=kwargs['slug'])
+                                   slug=kwargs['slug'])
 
         hole = Hole.objects.get(course=course,
-            position=kwargs['position'])
+                                position=kwargs['position'])
 
         if not _auth_course(request.user, course):
             return HttpResponse(simplejson.dumps({'success': False,
-                'error': 'Access denied'}),
-                mimetype='application/javascript')
+                                'error': 'Access denied'}),
+                                mimetype='application/javascript')
 
         form = HolePositionFormAjax(request.POST, hole=hole)
         response_dict = {'success': False, 'error': None}
@@ -35,4 +35,4 @@ class SetHolePositionView(View):
             response_dict['error'] = 'Form did not validate'
 
         return HttpResponse(simplejson.dumps(response_dict),
-            mimetype='application/javascript')
+                            mimetype='application/javascript')

@@ -1,8 +1,9 @@
 from django.contrib import admin
 from caddybook.books.models import Course, Hole, HoleGalleryImage
 
+
 class CourseAdmin(admin.ModelAdmin):
-    prepopulated_fields = { 'slug': ('name',) }
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class HoleAdmin(admin.ModelAdmin):

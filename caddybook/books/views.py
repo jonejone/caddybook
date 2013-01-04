@@ -1,16 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.conf import settings
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.contrib.sites.models import get_current_site
-from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
-from django.views.defaults import permission_denied
 from django.utils.text import slugify
 
-import simplejson
-
-from caddybook.books.models import Course, Hole
+from caddybook.books.models import Course
 from caddybook.books.forms import CreateCourseForm
 
 
@@ -29,8 +24,9 @@ def create_course(request):
         tmpl_dict = {
             'site': get_current_site(request),
         }
-        return render(request,
-            'books/account/create_course_nologin.html', tmpl_dict)
+        return render(
+            request, 'books/account/create_course_nologin.html',
+            tmpl_dict)
 
     if request.method == 'POST':
         form = CreateCourseForm(request.POST)
@@ -60,8 +56,9 @@ def create_course(request):
         'site': get_current_site(request),
     }
 
-    return render(request,
-        'books/account/create_course.html', tmpl_data)
+    return render(
+        request, 'books/account/create_course.html',
+        tmpl_data)
 
 
 @login_required
@@ -73,8 +70,8 @@ def profile(request):
 
 
 def index(request):
-    courses = Course.objects.filter(active=True,
-        published=True)
+    courses = Course.objects.filter(
+        active=True, published=True)
 
     tmpl_data = {
         'courses': courses,

@@ -1,6 +1,8 @@
-from fabric.api import *
+from fabric.api import env, cd, run
 
-env.hosts = ['www.caddybok.no',]
+
+env.hosts = ['www.caddybok.no', ]
+
 
 def deploy():
     with cd('/home/jone/caddybook/project'):
