@@ -17,7 +17,6 @@ $(function() {
     {% if can_edit %}
     /* Deal with buttons for saving position */
     $('.set-hole-position').click(function(e) {
-        console.log('Got here??');
         var HoleSetGeoPosition = CADDYBOOK.module('hole').HoleSetGeoPosition;
         var hole_geo = new HoleSetGeoPosition({
             'field': $(this).data('fieldId'),
@@ -42,41 +41,44 @@ $(function() {
     <div class="span4">
 
         <ul class="nav nav-tabs" id="hole-tabs">
-            <li class="active tab-images"><a href="#images" data-toggle="tab">{% trans "Images" %}</a></li>
-            <li class="tab-map"><a href="#map" data-toggle="tab">{% trans "Map" %}</a></li>
+            <li class="{% if hole.has_images %}active {% endif %}tab-images"><a href="#images" data-toggle="tab">{% trans "Images" %}</a></li>
+            <li class="{% if not hole.has_images %}active {% endif %}tab-map"><a href="#map" data-toggle="tab">{% trans "Map" %}</a></li>
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane active" id="images">
-                {% if hole.image %}
-                    {% thumbnail hole.image "x900" crop="center" as img %}
-                    <a class="gallery" href="{{ img.url }}">
-                    {% endthumbnail %}
-
-                    {% thumbnail hole.image "350x400" crop="center" as img %}
-                        <img src="{{ img.url }}" alt="{{ hole }}" class="img-polaroid hole-main-image">
-                    {% endthumbnail %}
-                    </a>
-                {% endif %}
-
-                <ul class="thumbnails">
-                    {% for image in hole.holegalleryimage_set.all %}
-                    <li class="span1">
-                        {% thumbnail image.image "x900" as img %}
-                        <a href="{{ img.url }}" class="thumbnail gallery" title="{{ image.description }}">
+            <div class="tab-pane {% if hole.has_images %} active{% endif %}" id="images">
+                {% if hole.has_images %}
+                    {% if hole.image %}
+                        {% thumbnail hole.image "x900" crop="center" as img %}
+                        <a class="gallery" href="{{ img.url }}">
                         {% endthumbnail %}
 
-                        {% thumbnail image.image "100x100" crop="center" as img %}
-                        <img src="{{ img.url }}" alt="">
+                        {% thumbnail hole.image "350x400" crop="center" as img %}
+                            <img src="{{ img.url }}" alt="{{ hole }}" class="img-polaroid hole-main-image">
                         {% endthumbnail %}
                         </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+                    {% endif %}
+
+                    <ul class="thumbnails">
+                        {% for image in hole.holegalleryimage_set.all %}
+                        <li class="span1">
+                            {% thumbnail image.image "x900" as img %}
+                            <a href="{{ img.url }}" class="thumbnail gallery" title="{{ image.description }}">
+                            {% endthumbnail %}
+
+                            {% thumbnail image.image "100x100" crop="center" as img %}
+                            <img src="{{ img.url }}" alt="">
+                            {% endthumbnail %}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>{% trans "No pictures are uploaded for this hole." %}</p>
+                {% endif %}
             </div>
 
-
-            <div class="tab-pane" id="map">
+            <div class="tab-pane {% if not hole.has_images %} active{% endif %}" id="map">
                 <script>
                 $(function() {
                     var HoleMapManager = CADDYBOOK.module('hole_map').HoleMapManager;

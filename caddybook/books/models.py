@@ -49,10 +49,10 @@ class Course(models.Model):
             return self._has_map
 
         for h in self.hole_set.all():
-            if not h.has_positions():
-                return False
+            if h.has_positions():
+                return True
 
-        return True
+        return False
 
     @staticmethod
     def slugify_unique(slug):
@@ -149,6 +149,15 @@ class Hole(models.Model):
             return self.name
 
         return _('Unnamed')
+
+    def has_images(self):
+        if self.image:
+            return True
+
+        if self.holegalleryimage_set.count() > 0:
+            return True
+
+        return False
 
     def has_next(self):
         if self.position < self.course.hole_set.count():
