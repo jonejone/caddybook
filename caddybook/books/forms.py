@@ -1,8 +1,6 @@
 from django import forms
-from geoposition.fields import GeopositionField
 from geoposition import Geoposition
 from caddybook.books.models import Hole, HoleGalleryImage, Course
-from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -19,7 +17,6 @@ class CreateCourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ('name',)
-
 
 
 class HoleGalleryImageForm(forms.ModelForm):

@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
-from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 admin.autodiscover()
@@ -16,7 +15,9 @@ from caddybook.books.classviews import (CourseView,
 from caddybook.books.ajaxviews import SetHolePositionView
 
 
-urlpatterns = patterns('caddybook.books.views',
+urlpatterns = patterns(
+    'caddybook.books.views',
+
     url(r'^$', 'index', name='books-index'),
     url(_(r'^about/$'), AboutView.as_view(), name='books-about'),
     url(_(r'^profile/$'), 'profile', name='books-profile'),
@@ -37,7 +38,9 @@ course_base = _('courses/(?P<slug>[-\w]+)/')
 hole_base = _('holes/(?P<position>\d+)/')
 course_and_hole = '%s%s' % (unicode(course_base), unicode(hole_base))
 
-urlpatterns += patterns('',
+urlpatterns += patterns(
+    '',
+
     url(r'^%s$' % unicode(course_base),
         CourseView.as_view(), name='books-course'),
 
@@ -66,7 +69,9 @@ user_course_base = ''.join([
 user_course_hole_base = ''.join([
     user_course_base, unicode(hole_base)])
 
-urlpatterns += patterns('caddybook.books.userviews',
+urlpatterns += patterns(
+    'caddybook.books.userviews',
+
     url(r'^%s$' % (user_course_base),
         CourseView.as_view(), name='books-user-course'),
 
@@ -89,7 +94,9 @@ urlpatterns += patterns('caddybook.books.userviews',
 )
 
 # AJAX views
-urlpatterns += patterns('caddybook.books.ajaxviews',
+urlpatterns += patterns(
+    'caddybook.books.ajaxviews',
+
     url(r'^%s%s$' % (user_course_hole_base, _('ajax/set-hole-position/')),
         SetHolePositionView.as_view(),
         name='books-user-ajax-set-hole-position'),
@@ -101,7 +108,9 @@ urlpatterns += patterns('caddybook.books.ajaxviews',
 
 # Turn on static file serving while on devserver
 if settings.DEBUG:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
+
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-                        'document_root': settings.MEDIA_ROOT,
-                        'show_indexes': True}))
+            'document_root': settings.MEDIA_ROOT,
+            'show_indexes': True}))

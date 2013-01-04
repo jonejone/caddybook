@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from sorl.thumbnail import ImageField
 from geoposition.fields import GeopositionField
-from geoposition import Geoposition
 from geopy import distance, Point
 
 
@@ -14,7 +13,7 @@ class Course(models.Model):
     url = models.URLField(_('URL'), blank=True, null=True)
     active = models.BooleanField(_('Active'))
     description = models.TextField(_('Description'),
-        blank=True, null=True)
+                                   blank=True, null=True)
     user = models.ForeignKey(User)
     published = models.BooleanField(default=False)
 
@@ -63,12 +62,13 @@ class Course(models.Model):
 
         return slug
 
+
 class Hole(models.Model):
     course = models.ForeignKey(Course)
     position = models.PositiveSmallIntegerField(_('Position'))
 
     name = models.CharField(_('Name'), max_length=100,
-        blank=True, null=True)
+                            blank=True, null=True)
 
     # Coordinates fields for Tee and Basket
     tee_pos = GeopositionField(_('Tee position'))
@@ -83,24 +83,24 @@ class Hole(models.Model):
         _('Par'), blank=True, null=True)
 
     image = ImageField(upload_to='upload/hole-mainimages/',
-        verbose_name=_('Image'), blank=True, null=True)
+                       verbose_name=_('Image'), blank=True, null=True)
 
     description = models.TextField(
         _('Description'), blank=True, null=True)
 
     class Meta:
-        ordering = ['position',]
+        ordering = ['position', ]
 
     def get_absolute_url(self):
         if self.course.published:
             return reverse('books-hole',
-                args=[self.course.slug,
-                    self.position])
+                           args=[self.course.slug,
+                           self.position])
         else:
             return reverse('books-user-hole',
-                args=[self.course.user.username,
-                    self.course.slug,
-                    self.position])
+                           args=[self.course.user.username,
+                                 self.course.slug,
+                                 self.position])
 
     def get_url_by_key(self, key):
         if self.course.published:
@@ -109,7 +109,7 @@ class Hole(models.Model):
         else:
             url = 'books-user-%s' % key
             args = [self.course.user.username,
-                self.course.slug, self.position]
+                    self.course.slug, self.position]
 
         return reverse(url, args=args)
 
@@ -192,6 +192,6 @@ class Hole(models.Model):
 class HoleGalleryImage(models.Model):
     hole = models.ForeignKey(Hole)
     image = ImageField(upload_to='upload/hole-gallery/',
-        verbose_name=_('Image'))
+                       verbose_name=_('Image'))
     description = models.CharField(_('Description'),
-        max_length=255, blank=True, null=True)
+                                   max_length=255, blank=True, null=True)
