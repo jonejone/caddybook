@@ -57,7 +57,7 @@ class HolePositionFormAjax(forms.Form):
 
         if data['field_id'] not in ['basket_pos', 'tee_pos']:
             raise Exception(
-                'Field %s not in accepted fields' % field)
+                'Field %s not in accepted fields' % data['field_id'])
 
         pos = Geoposition(data['lat'], data['lon'])
         setattr(self.hole, data['field_id'], pos)
