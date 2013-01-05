@@ -67,8 +67,9 @@ class Hole(models.Model):
     course = models.ForeignKey(Course)
     position = models.PositiveSmallIntegerField(_('Position'))
 
-    name = models.CharField(_('Name'), max_length=100,
-                            blank=True, null=True)
+    name = models.CharField(
+        _('Name'), max_length=100, blank=True, null=True,
+        help_text=_('Name is not a required field.'))
 
     # Coordinates fields for Tee and Basket
     tee_pos = GeopositionField(_('Tee position'))
