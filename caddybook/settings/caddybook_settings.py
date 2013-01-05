@@ -50,8 +50,6 @@ if os.environ.get('CADDYBOOK_DEBUG'):
     DEBUG = True
 
 DATABASES = {'default': dj_database_url.config()}
-LOCALE_PATHS = (PROJECT_ROOT + '/conf/locale',)
-
 
 # S3 configuration
 STATICFILES_STORAGE = 'caddybook.s3utils.StaticRootS3BotoStorage'
