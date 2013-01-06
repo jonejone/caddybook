@@ -9,4 +9,8 @@
 <form class="form-horizontal" method="post" action="{% url "auth_login" %}" enctype="multipart/form-data">{% csrf_token %}
     {% include "books/bootstrap_form.html" %}
 </form>
+
+{% url "auth_password_reset" as url %}
+
+{% blocktrans with url=url %}Forgotten your password? <a href="{{ url }}">Click here to reset</a>{% endblocktrans %}</p>
 {% endblock %}
