@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>{% trans "Edit hole" %}</h1>
+<h1>{% trans "Edit hole" %} {{ hole.position }}</h1>
 
 <p><a href="{{ hole.get_absolute_url }}">{% trans "Back to hole" %}</a></p>
 
