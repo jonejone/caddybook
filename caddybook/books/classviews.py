@@ -2,9 +2,13 @@ from django.views.generic.base import TemplateView, View
 from django.core.context_processors import csrf
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import (   HttpResponse,
+                            HttpResponseRedirect,
+                            HttpResponsePermanentRedirect)
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+
 import simplejson
 
 from caddybook.books.models import Course, Hole
@@ -137,6 +141,13 @@ class HoleView(TemplateView):
         hole = Hole.objects.get(course=course,
                                 position=position)
 
+        # Force published URLs if published
+        if kwargs.get('username'):
+            if course.published:
+                return HttpResponsePermanentRedirect(
+                    reverse('books-hole',
+                    args=[course.slug, position]))
+
         can_edit = _auth_course(request.user, course)
 
         tmpl_dict = {
@@ -162,6 +173,10 @@ class CourseView(TemplateView):
 
             course = get_object_or_404(Course,
                                        slug=course_slug, user=user)
+
+            if course.published:
+                return HttpResponsePermanentRedirect(
+                    reverse('books-course', args=[course.slug,]))
         else:
             course = get_object_or_404(Course,
                                        slug=course_slug, active=True)
